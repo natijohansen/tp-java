@@ -2,33 +2,33 @@ package entidades;
 
 public class ConsumoEnergetico {
 
-	public static ConsumoEnergetico DEFAULT = new ConsumoEnergetico('F');
+	public static ConsumoEnergetico DEFAULT = new ConsumoEnergetico("F");
 	public static String[] CONSUMOS = {"A", "B", "C", "D", "E", "F"};
 	
-	private char clasificacion;
+	private String clasificacion;
 
-	ConsumoEnergetico(char clasificacion) {
+	ConsumoEnergetico(String clasificacion) {
 		this.setClasificacion(clasificacion);
 	}
 	
 	public double recargoConsumo() {
 		switch (this.getClasificacion()) {
-		case 'A':
+		case "A":
 			return 100;
 			
-		case 'B':
+		case "B":
 			return 80;
 			
-		case 'C':
+		case "C":
 			return 60;
 			
-		case 'D':
+		case "D":
 			return 50;
 			
-		case 'E':
+		case "E":
 			return 30;
 			
-		case 'F':
+		case "F":
 			return 10;
 			
 		default:
@@ -37,11 +37,11 @@ public class ConsumoEnergetico {
 	}
 	
 	
-	public char getClasificacion() {
+	public String getClasificacion() {
 		return clasificacion;
 	}
 
-	public void setClasificacion(char clasificacion) {
+	public void setClasificacion(String clasificacion) {
 		this.clasificacion = clasificacion;
 	}
 	

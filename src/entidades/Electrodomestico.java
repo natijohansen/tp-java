@@ -28,7 +28,7 @@ public class Electrodomestico {
 		this.setColor(Color.DEFAULT);	
 	}
 	
-	Electrodomestico(double precio, double peso, String color, char consumo) {
+	Electrodomestico(double precio, double peso, String color, String consumo) {
 		this.setPrecioBase(precio);
 		this.setPeso(peso);
 		
@@ -49,11 +49,16 @@ public class Electrodomestico {
 		
 	}
 	
-	private boolean comprobarConsumoEnergetico(char letra) {
-		if(letra>='A' && letra <= 'F'){
-			return true;
-		} 
-		return false;
+	private boolean comprobarConsumoEnergetico(String letra) {
+		boolean flag = false;
+		for(String consumo : ConsumoEnergetico.CONSUMOS) {
+			if(letra.equals(consumo)) {
+				flag = true;
+				break;
+			}
+		}
+		
+		return flag;
 	}
 	
 	private boolean comprobarColor(String color) {

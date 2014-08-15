@@ -28,6 +28,9 @@ import entidades.ConsumoEnergetico;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.nio.charset.MalformedInputException;
+
+import logica.ControladorAlta;
 
 public class JAltaElectrodomesticos extends JFrame {
 
@@ -43,29 +46,12 @@ public class JAltaElectrodomesticos extends JFrame {
 	private JComboBox cmbConsumo;
 	private JCheckBox chkTDT;
 	private JTextPane txtDescripcion;
-	
+	private ControladorAlta ca;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JAltaElectrodomesticos frame = new JAltaElectrodomesticos();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	
 	public JAltaElectrodomesticos() {
+		ca = new ControladorAlta();
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 592, 445);
 		contentPane = new JPanel();
@@ -274,6 +260,7 @@ public class JAltaElectrodomesticos extends JFrame {
 				mostrarPanel("televisor");
 			}
 		});
+		rdbtnTelevisor.setSelected(true);
 		
 		rdbtnLavarropas = new JRadioButton("Lavarropas");
 		rdbtnLavarropas.addActionListener(new ActionListener() {
@@ -318,6 +305,35 @@ public class JAltaElectrodomesticos extends JFrame {
 		}
 	}
 	
+	private void altaElectrodomestico() {
+		
+		try {
+			double precioBase = Double.valueOf(txtPrecioBase.getText());
+			double peso = Double.valueOf(txtPeso.getText());
+		
+			String descripcion = txtDescripcion.getText();
+			String color = Color.COLORES[cmbColor.getSelectedIndex()];
+			String consumo = ConsumoEnergetico.CONSUMOS[cmbConsumo.getSelectedIndex()];
+			
+			if(rdbtnLavarropas.isSelected()) {
+				double carga = Double.valueOf(txtCarga.getText());
+								
+				ca.altaElectrodomestico(precioBase, peso, descripcion, color, consumo, carga);
+			}
+			else if(rdbtnTelevisor.isSelected()) {
+				double resolucion = Double.valueOf(txtResolucion.getText());
+				boolean tdt = chkTDT.isSelected();
+				
+				ca.altaElectrodomestico(precioBase, peso, descripcion, color, consumo, resolucion, tdt);
+
+			}
+		
+		} catch (NumberFormatException e) {
+			System.out.println("error");
+		}
+		
+		
+	}
 	
 	
 }
