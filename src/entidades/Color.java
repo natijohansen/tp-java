@@ -3,7 +3,7 @@ package entidades;
 public class Color {
 	
 	public static Color DEFAULT = new Color("blanco");
-	public static String[] COLORES = {"blanco", "negro", "rojo", "azul", "gris"};
+	public static String[] COLORES = { "blanco", "negro", "rojo", "azul", "gris" };
 
 	private String nombre;
 
