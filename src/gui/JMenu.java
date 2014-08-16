@@ -1,14 +1,9 @@
 
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import java.awt.GridLayout;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -21,8 +16,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
-import logica.ControladorAlta;
 
 public class JMenu extends JFrame {
 

@@ -23,7 +23,7 @@ public class Television extends Electrodomestico {
 		this.setTdt(TDTDEFAULT);
 	}
 	
-	Television(double precio, double peso, String color, char consumo, double resolucion, boolean tdt) {
+	Television(double precio, double peso, String color, String consumo, double resolucion, boolean tdt) {
 		super(precio, peso, color, consumo);
 		this.setResolucion(resolucion);
 		this.setTdt(tdt);

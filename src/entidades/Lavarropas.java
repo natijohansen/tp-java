@@ -16,7 +16,7 @@ public class Lavarropas extends Electrodomestico {
 		this.setCarga(CARGADEFAULT);
 	}
 	
-	Lavarropas(double precio, double peso, String color, char consumo, double carga) {
+	Lavarropas(double precio, double peso, String color, String consumo, double carga) {
 		super(precio, peso, color, consumo);
 		this.setCarga(carga);
 	}

@@ -1,8 +1,5 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,7 +7,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
-import javax.swing.JSplitPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
@@ -28,7 +24,6 @@ import entidades.ConsumoEnergetico;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.nio.charset.MalformedInputException;
 
 import logica.ControladorAlta;
 
@@ -42,8 +37,8 @@ public class JAltaElectrodomesticos extends JFrame {
 	private JRadioButton rdbtnTelevisor;
 	private JRadioButton rdbtnLavarropas;
 	private JPanel pnlDatosEspecificos;
-	private JComboBox cmbColor;
-	private JComboBox cmbConsumo;
+	private JComboBox<String> cmbColor;
+	private JComboBox<String> cmbConsumo;
 	private JCheckBox chkTDT;
 	private JTextPane txtDescripcion;
 	private ControladorAlta ca;
@@ -192,9 +187,9 @@ public class JAltaElectrodomesticos extends JFrame {
 		txtPeso = new JTextField();
 		txtPeso.setColumns(10);
 		
-		cmbColor = new JComboBox(Color.COLORES);
+		cmbColor = new JComboBox<String>(Color.COLORES);
 		
-		cmbConsumo = new JComboBox(ConsumoEnergetico.CONSUMOS);
+		cmbConsumo = new JComboBox<String>(ConsumoEnergetico.CONSUMOS);
 		//Seleccioma por defecto la "F"
 		cmbConsumo.setSelectedIndex(5);
 		
