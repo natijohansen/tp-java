@@ -56,6 +56,7 @@ public class JAltaElectrodomesticos extends JFrame {
 		setContentPane(contentPane);
 		
 		JLabel lblNewLabel = new JLabel("Alta");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 		JPanel pnlTipoElectrodomestico = new JPanel();
 		

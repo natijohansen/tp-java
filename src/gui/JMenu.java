@@ -41,23 +41,20 @@ public class JMenu extends JFrame {
 		
 		JButton btnListadoElectrodomestico = new JButton("Listado Electrodom\u00E9sticos");
 		
-		JButton btnBajaElectrodomestico = new JButton("Baja Electrodom\u00E9sticos");
-		
-		JButton btnModificarElectrodomestico = new JButton("Modificar Electrodom\u00E9stico");
+		JButton btnBajaElectrodomestico = new JButton("Baja / Modificacion");
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(142)
 					.addComponent(lblJuaniElectrodomenticos)
-					.addContainerGap(149, Short.MAX_VALUE))
+					.addContainerGap(148, Short.MAX_VALUE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(168)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnBajaElectrodomestico, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
 						.addComponent(btnListadoElectrodomestico, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-						.addComponent(btnAltaElectrodomestico, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-						.addComponent(btnModificarElectrodomestico, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnAltaElectrodomestico, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
 					.addGap(172))
 		);
 		gl_contentPane.setVerticalGroup(
@@ -71,9 +68,7 @@ public class JMenu extends JFrame {
 					.addComponent(btnListadoElectrodomestico, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnBajaElectrodomestico, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnModificarElectrodomestico, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(63, Short.MAX_VALUE))
+					.addContainerGap(103, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
