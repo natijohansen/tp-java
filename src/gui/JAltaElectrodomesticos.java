@@ -266,7 +266,6 @@ public class JAltaElectrodomesticos extends JFrame {
 		
 		ButtonGroup bg = new ButtonGroup();
 		
-		
 		rdbtnTelevisor = new JRadioButton("Televisor");
 		rdbtnTelevisor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

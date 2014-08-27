@@ -20,6 +20,8 @@ import java.awt.event.ActionEvent;
 public class JMenu extends JFrame {
 
 	private JPanel contentPane;
+	private JAltaElectrodomesticos jae;
+	
 
 	public JMenu() {
 		setTitle("Men\u00FA");
@@ -35,7 +37,10 @@ public class JMenu extends JFrame {
 		JButton btnAltaElectrodomestico = new JButton("Alta Electrodom\u00E9sticos");
 		btnAltaElectrodomestico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				if(jae == null) {
+					jae= new JAltaElectrodomesticos();
+				}
+				jae.setVisible(true);
 			}
 		});
 		
@@ -50,14 +55,14 @@ public class JMenu extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(142)
 					.addComponent(lblJuaniElectrodomenticos)
-					.addContainerGap(149, Short.MAX_VALUE))
+					.addContainerGap(171, Short.MAX_VALUE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(168)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnBajaElectrodomestico, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-						.addComponent(btnListadoElectrodomestico, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-						.addComponent(btnAltaElectrodomestico, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-						.addComponent(btnModificarElectrodomestico, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnBajaElectrodomestico, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+						.addComponent(btnListadoElectrodomestico, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+						.addComponent(btnAltaElectrodomestico, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+						.addComponent(btnModificarElectrodomestico, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
 					.addGap(172))
 		);
 		gl_contentPane.setVerticalGroup(
@@ -73,7 +78,7 @@ public class JMenu extends JFrame {
 					.addComponent(btnBajaElectrodomestico, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnModificarElectrodomestico, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(63, Short.MAX_VALUE))
+					.addContainerGap(65, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
