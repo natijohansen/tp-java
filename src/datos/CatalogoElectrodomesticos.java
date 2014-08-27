@@ -1,5 +1,6 @@
 package datos;
 import entidades.Television;
+import entidades.Lavarropas;
 
 import java.util.ArrayList;
 
@@ -18,7 +19,7 @@ public class CatalogoElectrodomesticos {
 	}
 	
 	public Electrodomestico crearElectrodomestico(double precioBase, double peso, String color, String consumo, String descripcion, double carga) {
-		return null;
+		return new Lavarropas(precioBase, peso, color, consumo, carga, descripcion);
 	
 	}
 
