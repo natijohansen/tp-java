@@ -2,7 +2,7 @@ package entidades;
 
 public class Electrodomestico {
 	
-	// precio base, color, consumo energetico y peso
+	// precio base, color, consumo energetico y peso!
 
 	public static double PRECIODEFAULT = 100;
 	public static double PESODEFAULT = 5;
