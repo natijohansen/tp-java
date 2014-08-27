@@ -26,6 +26,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import logica.ControladorAlta;
+import java.awt.Dialog.ModalExclusionType;
 
 public class JAltaElectrodomesticos extends JFrame {
 
@@ -37,13 +38,14 @@ public class JAltaElectrodomesticos extends JFrame {
 	private JRadioButton rdbtnTelevisor;
 	private JRadioButton rdbtnLavarropas;
 	private JPanel pnlDatosEspecificos;
-	private JComboBox<String> cmbColor;
-	private JComboBox<String> cmbConsumo;
+	private JComboBox cmbColor;
+	private JComboBox cmbConsumo;
 	private JCheckBox chkTDT;
 	private JTextPane txtDescripcion;
 	private ControladorAlta ca;
 
 	public JAltaElectrodomesticos() {
+		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		ca = new ControladorAlta();
 		
 		
@@ -62,8 +64,24 @@ public class JAltaElectrodomesticos extends JFrame {
 		pnlDatosEspecificos = new JPanel();
 		
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				altaElectrodomestico();
+				defaultearCampos();
+				setVisible(false);
+
+			}
+		});
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				defaultearCampos();
+				setVisible(false);
+				
+				
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -187,9 +205,9 @@ public class JAltaElectrodomesticos extends JFrame {
 		txtPeso = new JTextField();
 		txtPeso.setColumns(10);
 		
-		cmbColor = new JComboBox<String>(Color.COLORES);
+		cmbColor = new JComboBox(Color.COLORES);
 		
-		cmbConsumo = new JComboBox<String>(ConsumoEnergetico.CONSUMOS);
+		cmbConsumo = new JComboBox(ConsumoEnergetico.CONSUMOS);
 		//Seleccioma por defecto la "F"
 		cmbConsumo.setSelectedIndex(5);
 		
@@ -328,7 +346,22 @@ public class JAltaElectrodomesticos extends JFrame {
 		}
 		
 		
+		
+	
 	}
 	
-	
+	private void defaultearCampos() {
+		this.rdbtnTelevisor.setSelected(true);
+		this.rdbtnLavarropas.setSelected(false);
+		this.txtPrecioBase.setText("");
+		this.txtPeso.setText("");
+		this.txtResolucion.setText("");
+		this.txtCarga.setText("");
+		this.cmbColor.setSelectedIndex(0);
+		this.cmbConsumo.setSelectedIndex(5);
+		this.chkTDT.setSelected(false);
+		this.txtDescripcion.setText("");
+	}
 }
+
+

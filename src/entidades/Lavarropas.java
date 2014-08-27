@@ -6,19 +6,25 @@ public class Lavarropas extends Electrodomestico {
 	
 	private double carga;
 	
-	Lavarropas() { 
+	public Lavarropas() { 
 		super();
 		this.setCarga(CARGADEFAULT);
 	}
 	
-	Lavarropas(double precio, double peso) { 
+	public Lavarropas(double precio, double peso) { 
 		super(precio, peso);
 		this.setCarga(CARGADEFAULT);
 	}
 	
-	Lavarropas(double precio, double peso, String color, String consumo, double carga) {
+	public Lavarropas(double precio, double peso, String color, String consumo, double carga) {
 		super(precio, peso, color, consumo);
 		this.setCarga(carga);
+	}
+	
+	public Lavarropas(double precio, double peso, String color, String consumo, double carga, String descripcion) {
+		super(precio, peso, color, consumo);
+		this.setCarga(carga);
+		this.setDescripcion(descripcion);
 	}
 	
 	public double precioFinal() { 
