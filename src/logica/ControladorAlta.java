@@ -5,7 +5,6 @@ import entidades.Electrodomestico;
 import gui.JAltaElectrodomesticos;
 
 public class ControladorAlta {
-	JAltaElectrodomesticos jae = new JAltaElectrodomesticos();
 	
 	CatalogoElectrodomesticos ce = new CatalogoElectrodomesticos();
 	

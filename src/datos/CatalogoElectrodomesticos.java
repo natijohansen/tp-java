@@ -17,7 +17,11 @@ public class CatalogoElectrodomesticos {
 		
 		
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 33f1d93c1d552b11d6bf46fd0e1332e0de42079a
 	public Electrodomestico crearElectrodomestico(double precioBase, double peso, String color, String consumo, String descripcion, double carga) {
 		return new Lavarropas(precioBase, peso, color, consumo, carga, descripcion);
 	
