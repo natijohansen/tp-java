@@ -45,5 +45,34 @@ public class ConsumoEnergetico {
 		this.clasificacion = clasificacion;
 	}
 	
+	public int getIndex() {
+		int index = 0;
+		switch(this.clasificacion) {
+			case "A": 
+				index = 0;
+				break;
+			case "B": 
+				index = 1;
+				break;
+			case "C": 
+				index = 2;
+				break;
+			case "D": 
+				index = 3;
+				break;
+			case "E": 
+				index = 4;
+				break;
+			case "F": 
+				index = 5;
+				break;
+		}
+		
+		return index;
+	}
+	
+	public String toString() {
+		return getClasificacion();
+	}
 	
 }

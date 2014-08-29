@@ -46,4 +46,18 @@ public class CatalogoElectrodomesticos {
 	public ArrayList<Electrodomestico> getElectrodomesticos() {
 		return this.electrodomesticos;
 	}
+	
+	public void borrarElectrodomestico(int index) {
+		this.electrodomesticos.remove(index);
+	}
+	
+	public void borrarElectrodomestico(Electrodomestico e) {
+		this.electrodomesticos.remove(e);
+	}
+	
+	public Electrodomestico getElectrodomestico(int index) {
+		return this.electrodomesticos.get(index);
+	}
+	
+	
 }

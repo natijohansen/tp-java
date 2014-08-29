@@ -13,24 +13,28 @@ import javax.swing.JLabel;
 import java.awt.Font;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.JTable;
 
 import logica.ControladorBajaModificacion;
+import javax.swing.ListSelectionModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class JBajaModificacion extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
 	private ControladorBajaModificacion cbm;
+	private JTable table;
 
 	public JBajaModificacion() {
 		setTitle("Baja / Modificación Electrodomésticos");
 		cbm = new ControladorBajaModificacion();
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 594, 443);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 687, 443);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -41,14 +45,23 @@ public class JBajaModificacion extends JFrame {
 		JButton btnCancelar = new JButton("Cancelar");
 		
 		JButton btnAceptar = new JButton("Modificar");
-		
-		
-		JPanel panel_1 = new JPanel();
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				modificarElectrodomestico();
+			}
+		});
 		
 		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				eliminarElectrodomestico();
+			}
+		});
+		
+		JScrollPane scrollPane = new JScrollPane();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblBajaModificacin)
@@ -61,19 +74,19 @@ public class JBajaModificacion extends JFrame {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnCancelar)
 					.addGap(30))
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 536, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(36, Short.MAX_VALUE))
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(22, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblBajaModificacin)
-					.addGap(18)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 297, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 309, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancelar)
 						.addComponent(btnAceptar)
@@ -81,31 +94,34 @@ public class JBajaModificacion extends JFrame {
 					.addContainerGap())
 		);
 		
+		
+		
 		TableModel dataModel = new TableModelElectrodomestico(cbm.getElectrodomesticos());
 		
 		table = new JTable(dataModel);
-				
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(table, GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(table, GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		panel_1.setLayout(gl_panel_1);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
-		ButtonGroup bg = new ButtonGroup();
+		
+		scrollPane.setViewportView(table);
+		scrollPane.setColumnHeaderView(table.getTableHeader());
+		
+		
+		
 		contentPane.setLayout(gl_contentPane);
 	}		
 	
+	private void eliminarElectrodomestico() {
+		int respuesta = JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminarlo?", "Eliminar", JOptionPane.WARNING_MESSAGE);
+		if(respuesta == 0) {
+			cbm.borrarElectrodomestico(this.table.getSelectedRow());
+			((TableModelElectrodomestico) this.table.getModel()).fireTableDataChanged();
+		}
+	}
 	
+	private void modificarElectrodomestico() {
+		JModificacion jm = new JModificacion(cbm.getElectrodomestico(this.table.getSelectedRow()), this.cbm);
+		jm.setVisible(true);
+		((TableModelElectrodomestico) this.table.getModel()).fireTableDataChanged();
+	}
 }
 

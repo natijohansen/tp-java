@@ -47,9 +47,6 @@ public class JAltaElectrodomesticos extends JFrame {
 	public JAltaElectrodomesticos() {
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		ca = new ControladorAlta();
-		
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 592, 445);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -345,14 +342,12 @@ public class JAltaElectrodomesticos extends JFrame {
 			System.out.println("error");
 		}
 		
-		
-		
-	
 	}
 	
 	private void defaultearCampos() {
 		this.rdbtnTelevisor.setSelected(true);
 		this.rdbtnLavarropas.setSelected(false);
+		this.mostrarPanel("televisor");
 		this.txtPrecioBase.setText("");
 		this.txtPeso.setText("");
 		this.txtResolucion.setText("");

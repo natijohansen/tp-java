@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import entidades.Color;
+import entidades.ConsumoEnergetico;
 import entidades.Electrodomestico;
 import entidades.Lavarropas;
 import entidades.Television;
@@ -24,6 +26,10 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JTextPane;
 
+import logica.ControladorBajaModificacion;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class JModificacion extends JFrame {
 
 	private JPanel contentPane;
@@ -36,11 +42,15 @@ public class JModificacion extends JFrame {
 	private JCheckBox chkTDT;
 	private JTextField txtResolucion;
 	private JTextField txtCarga;
-
+	private JLabel lblTdt;
+	private JLabel lblCarga;
+	private JLabel lblResolucion;
+	private ControladorBajaModificacion cbm;
 	
-	public JModificacion(Electrodomestico e) {
+	public JModificacion(Electrodomestico e, ControladorBajaModificacion cbm) {
 		
 		this.electrodomestico = e;
+		this.cbm = cbm;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 481, 385);
@@ -56,6 +66,11 @@ public class JModificacion extends JFrame {
 		JButton btnCancelar = new JButton("Cancelar");
 		
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				modificarElectrodomestico();
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -101,22 +116,22 @@ public class JModificacion extends JFrame {
 		txtPeso = new JTextField();
 		txtPeso.setColumns(10);
 		
-		cmbColor = new JComboBox();
+		cmbColor = new JComboBox(Color.COLORES);
 		
-		cmbConsumo = new JComboBox();
+		cmbConsumo = new JComboBox(ConsumoEnergetico.CONSUMOS);
 		
 		txtDescripcion = new JTextPane();
 		
-		JLabel lblTdt = new JLabel("TDT");
+		lblTdt = new JLabel("TDT");
 		
 		chkTDT = new JCheckBox("");
 		
-		JLabel lblResolucion = new JLabel("Resolucion");
+		lblResolucion = new JLabel("Resolucion");
 		
 		txtResolucion = new JTextField();
 		txtResolucion.setColumns(10);
 		
-		JLabel lblCarga = new JLabel("Carga");
+		lblCarga = new JLabel("Carga");
 		
 		txtCarga = new JTextField();
 		txtCarga.setColumns(10);
@@ -206,19 +221,62 @@ public class JModificacion extends JFrame {
 		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
 		
-		if(this.electrodomestico instanceof Television){
-			
-			lblCarga.setVisible(false);
+		this.setDefaultValues();
+		
+		
+	}
+	
+	private void setDefaultValues() {
+		
+		this.txtPrecioBase.setText(String.valueOf(this.electrodomestico.getPrecioBase()));
+		this.txtPeso.setText(String.valueOf(this.electrodomestico.getPeso()));
+		this.txtDescripcion.setText(this.electrodomestico.getDescripcion());
+		this.cmbColor.setSelectedIndex(electrodomestico.getColor().getIndex());
+		this.cmbConsumo.setSelectedIndex(electrodomestico.getConsumo().getIndex());
+		
+		if(this.electrodomestico instanceof Television){	
+			this.lblCarga.setVisible(false);
 			this.txtCarga.setVisible(false);
+			
+			this.txtResolucion.setText(String.valueOf(((Television) this.electrodomestico).getResolucion()));
+			this.chkTDT.setSelected(((Television) this.electrodomestico).getTdt());
 		}
 		
 		else if(this.electrodomestico instanceof Lavarropas){
-			
-			lblResolucion.setVisible(false);
-			lblTdt.setVisible(false);
+			this.lblResolucion.setVisible(false);
+			this.lblTdt.setVisible(false);
 			this.chkTDT.setVisible(false);
-			this.txtResolucion.setVisible(false);
+			this.txtResolucion.setVisible(false);	
 			
+			this.txtCarga.setText(String.valueOf(((Lavarropas) this.electrodomestico).getCarga()));
 		}
+	}
+	
+	private void modificarElectrodomestico() {
+		try {
+			double precioBase = Double.valueOf(txtPrecioBase.getText());
+			double peso = Double.valueOf(txtPeso.getText());
+		
+			String descripcion = txtDescripcion.getText();
+			String color = Color.COLORES[cmbColor.getSelectedIndex()];
+			String consumo = ConsumoEnergetico.CONSUMOS[cmbConsumo.getSelectedIndex()];
+			
+			if(this.electrodomestico instanceof Lavarropas) {
+				double carga = Double.valueOf(txtCarga.getText());
+								
+				cbm.modificarElectrodomestico(this.electrodomestico, precioBase, peso, descripcion, color, consumo, carga);
+			}
+			else if(this.electrodomestico instanceof Television) {
+				double resolucion = Double.valueOf(txtResolucion.getText());
+				boolean tdt = chkTDT.isSelected();
+				
+				cbm.modificarElectrodomestico(this.electrodomestico, precioBase, peso, descripcion, color, consumo, resolucion, tdt);
+			}
+		
+		} catch (NumberFormatException e) {
+			System.out.println("error");
+		}
+		
+		this.dispose();
 	}
 }
