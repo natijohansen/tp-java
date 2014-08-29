@@ -10,14 +10,14 @@ public class TableModelElectrodomestico extends AbstractTableModel {
 	
 	private ArrayList<Electrodomestico> electrodomesticos;
 	
-	private String[] headers = {"#","DescripciÃ³n"};
+	private String[] headers = {"Descripción"};
 	
 	public TableModelElectrodomestico(ArrayList<Electrodomestico> electrodomesticos) {
 		this.electrodomesticos = electrodomesticos;
 	}
 	
 	public int getColumnCount() {
-		return 2;
+		return 1;
 	}
 
 	public int getRowCount() {
@@ -26,16 +26,8 @@ public class TableModelElectrodomestico extends AbstractTableModel {
 
 	public Object getValueAt(int rowIndex, int columnIndex) {
         Electrodomestico e = this.electrodomesticos.get(rowIndex);
-        Object value = null;
-        switch (columnIndex) {
-            case 0:
-                value = rowIndex;
-                break;
-            case 1:
-                value = e.toString();
-                break;
-        }
-        return value;
+           
+        return e.toString();
     }
 	
 	public String getColumnName(int col) {

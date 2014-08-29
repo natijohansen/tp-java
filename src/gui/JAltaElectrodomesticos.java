@@ -45,6 +45,7 @@ public class JAltaElectrodomesticos extends JFrame {
 	private ControladorAlta ca;
 
 	public JAltaElectrodomesticos() {
+		setTitle("Alta Electrodom\u00E9stico");
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		ca = new ControladorAlta();
 		setBounds(100, 100, 592, 445);

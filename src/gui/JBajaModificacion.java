@@ -31,7 +31,7 @@ public class JBajaModificacion extends JFrame {
 	private JTable table;
 
 	public JBajaModificacion() {
-		setTitle("Baja / ModificaciÃ³n ElectrodomÃ©sticos");
+		setTitle("Baja / Modificación Electrodomésticos");
 		cbm = new ControladorBajaModificacion();
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 687, 443);
@@ -39,10 +39,15 @@ public class JBajaModificacion extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JLabel lblBajaModificacin = new JLabel("Baja / Modificaci\u00F3n");
+		JLabel lblBajaModificacin = new JLabel("Baja / Modificación");
 		lblBajaModificacin.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
 		
 		JButton btnAceptar = new JButton("Modificar");
 		btnAceptar.addActionListener(new ActionListener() {

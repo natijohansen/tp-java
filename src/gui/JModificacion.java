@@ -48,6 +48,7 @@ public class JModificacion extends JFrame {
 	private ControladorBajaModificacion cbm;
 	
 	public JModificacion(Electrodomestico e, ControladorBajaModificacion cbm) {
+		setTitle("Modificar Electrodom\u00E9stico");
 		
 		this.electrodomestico = e;
 		this.cbm = cbm;
