@@ -22,6 +22,7 @@ public class JMenu extends JFrame {
 	private JPanel contentPane;
 	private JAltaElectrodomesticos jae;
 	private JBajaModificacion jbm;
+	private JListado jl;
 	
 
 	public JMenu() {
@@ -46,6 +47,14 @@ public class JMenu extends JFrame {
 		});
 		
 		JButton btnListadoElectrodomestico = new JButton("Listado Electrodom\u00E9sticos");
+		btnListadoElectrodomestico.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(jl == null) {
+					jl= new JListado();
+				}
+				jl.setVisible(true);
+			}
+		});
 		
 		JButton btnBajaModificacion = new JButton("Baja / Modificacion");
 		btnBajaModificacion.addActionListener(new ActionListener() {

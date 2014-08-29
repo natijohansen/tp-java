@@ -31,7 +31,7 @@ public class JBajaModificacion extends JFrame {
 	private JTable table;
 
 	public JBajaModificacion() {
-		setTitle("Baja / Modificación Electrodomésticos");
+		setTitle("Baja / Modificaciï¿½n Electrodomï¿½sticos");
 		cbm = new ControladorBajaModificacion();
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 687, 443);
@@ -39,7 +39,7 @@ public class JBajaModificacion extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JLabel lblBajaModificacin = new JLabel("Baja / Modificación");
+		JLabel lblBajaModificacin = new JLabel("Baja / Modificaciï¿½n");
 		lblBajaModificacin.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -106,7 +106,6 @@ public class JBajaModificacion extends JFrame {
 		table = new JTable(dataModel);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
-		
 		scrollPane.setViewportView(table);
 		scrollPane.setColumnHeaderView(table.getTableHeader());
 		
@@ -116,17 +115,28 @@ public class JBajaModificacion extends JFrame {
 	}		
 	
 	private void eliminarElectrodomestico() {
-		int respuesta = JOptionPane.showConfirmDialog(null, "Â¿Seguro que desea eliminarlo?", "Eliminar", JOptionPane.WARNING_MESSAGE);
-		if(respuesta == 0) {
-			cbm.borrarElectrodomestico(this.table.getSelectedRow());
-			((TableModelElectrodomestico) this.table.getModel()).fireTableDataChanged();
+		if(this.table.getSelectedRow() ==-1) {
+			JOptionPane.showMessageDialog(null, "Seleccione un electrodomÃ©stico", "Error", JOptionPane.ERROR_MESSAGE);	
+		}
+		else {
+			int respuesta = JOptionPane.showConfirmDialog(null, "Â¿Seguro que desea eliminarlo?", "Eliminar", JOptionPane.WARNING_MESSAGE);
+		
+			if(respuesta == 0) {
+				cbm.borrarElectrodomestico(this.table.getSelectedRow());
+				((TableModelElectrodomestico) this.table.getModel()).fireTableDataChanged();
+			}
 		}
 	}
 	
 	private void modificarElectrodomestico() {
-		JModificacion jm = new JModificacion(cbm.getElectrodomestico(this.table.getSelectedRow()), this.cbm);
-		jm.setVisible(true);
-		((TableModelElectrodomestico) this.table.getModel()).fireTableDataChanged();
+		if(this.table.getSelectedRow() ==-1) {
+			JOptionPane.showMessageDialog(null, "Seleccione un electrodomÃ©stico", "Error", JOptionPane.ERROR_MESSAGE);	
+		}
+		else {
+			JModificacion jm = new JModificacion(cbm.getElectrodomestico(this.table.getSelectedRow()), this.cbm);
+			jm.setVisible(true);
+			((TableModelElectrodomestico) this.table.getModel()).fireTableDataChanged();
+		}
 	}
 }
 
