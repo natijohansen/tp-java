@@ -43,6 +43,9 @@ public class Lavarropas extends Electrodomestico {
 	public void setCarga(double carga) {
 		this.carga = carga;
 	}
-	
-	
+
+	public String toString() {
+		return "Lavarropas " + this.getDescripcion() + " | $" + this.precioFinal() + " | Carga: " + this.getCarga()
+				+ "kg | Peso: " + this.getPeso() + "kg | " + this.getColor() + " | Consumo: " + this.getConsumo();
+	}
 }

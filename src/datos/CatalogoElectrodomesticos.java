@@ -8,8 +8,21 @@ import entidades.Electrodomestico;
 
 public class CatalogoElectrodomesticos {
 
+	private static CatalogoElectrodomesticos ce;
+
 	ArrayList<Electrodomestico> electrodomesticos = new ArrayList<Electrodomestico>();
 	
+	
+	public static CatalogoElectrodomesticos getCatalogoElectrodomesticos() {
+		if(ce == null) {
+			ce = new CatalogoElectrodomesticos();
+		}
+		return ce;
+	}
+	
+	private CatalogoElectrodomesticos() {
+		
+	}
 	
 	public Electrodomestico crearElectrodomestico(double precioBase, double peso, String descripcion, String color, String consumo, double resolucion, boolean tdt) {
 
@@ -17,11 +30,7 @@ public class CatalogoElectrodomesticos {
 		
 		
 	}
-<<<<<<< HEAD
 	
-=======
-
->>>>>>> 33f1d93c1d552b11d6bf46fd0e1332e0de42079a
 	public Electrodomestico crearElectrodomestico(double precioBase, double peso, String color, String consumo, String descripcion, double carga) {
 		return new Lavarropas(precioBase, peso, color, consumo, carga, descripcion);
 	
@@ -29,5 +38,9 @@ public class CatalogoElectrodomesticos {
 
 	public void addElectrodomestico(Electrodomestico e) {
 		this.electrodomesticos.add(e);
+	}
+	
+	public ArrayList<Electrodomestico> getElectrodomesticos() {
+		return this.electrodomesticos;
 	}
 }

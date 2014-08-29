@@ -6,7 +6,7 @@ import gui.JAltaElectrodomesticos;
 
 public class ControladorAlta {
 	
-	CatalogoElectrodomesticos ce = new CatalogoElectrodomesticos();
+	CatalogoElectrodomesticos ce = CatalogoElectrodomesticos.getCatalogoElectrodomesticos();
 	
 	public void altaElectrodomestico(double precioBase, double peso, String descripcion, String color, String consumo, double carga) {
 		

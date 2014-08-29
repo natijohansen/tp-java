@@ -66,4 +66,12 @@ public class Television extends Electrodomestico {
 		this.tdt = tdt;
 	}
 	
+	public String toString() {
+		String str = "Television " + this.getDescripcion() + " | $" + this.precioFinal() + " | Resolucion: " + this.getResolucion();
+		str += this.getTdt() ? " | TDT: Si" : " | TDT: No";
+		str += " | Peso: " + this.getPeso() + "kg | " + this.getColor() + " | Consumo: " + this.getConsumo();
+		
+		return str;
+	}
+	
 }

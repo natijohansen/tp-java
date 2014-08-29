@@ -1,6 +1,6 @@
 package entidades;
 
-public class Electrodomestico {
+public abstract class Electrodomestico {
 	
 	// precio base, color, consumo energetico y peso!
 
@@ -132,5 +132,5 @@ public class Electrodomestico {
 		this.descripcion = descripcion;
 	}
 	
-	
+	public abstract String toString(); 
 }
