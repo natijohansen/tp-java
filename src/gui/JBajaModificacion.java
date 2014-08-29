@@ -1,24 +1,20 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JTable;
 
@@ -29,29 +25,9 @@ public class JBajaModificacion extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private ControladorBajaModificacion cbm;
-	private JRadioButton rdbtnTelevisor;
-	private JRadioButton rdbtnLavarropas;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JBajaModificacion frame = new JBajaModificacion();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public JBajaModificacion() {
+		setTitle("Baja / Modificación Electrodomésticos");
 		cbm = new ControladorBajaModificacion();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 594, 443);
@@ -62,11 +38,10 @@ public class JBajaModificacion extends JFrame {
 		JLabel lblBajaModificacin = new JLabel("Baja / Modificaci\u00F3n");
 		lblBajaModificacin.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
-		JPanel panel = new JPanel();
-		
 		JButton btnCancelar = new JButton("Cancelar");
 		
 		JButton btnAceptar = new JButton("Modificar");
+		
 		
 		JPanel panel_1 = new JPanel();
 		
@@ -76,33 +51,29 @@ public class JBajaModificacion extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 537, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblBajaModificacin))
-					.addContainerGap(21, Short.MAX_VALUE))
+					.addComponent(lblBajaModificacin)
+					.addContainerGap(427, Short.MAX_VALUE))
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(287, Short.MAX_VALUE)
+					.addContainerGap(251, Short.MAX_VALUE)
 					.addComponent(btnEliminar)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnAceptar)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnCancelar)
 					.addGap(30))
-				.addGroup(gl_contentPane.createSequentialGroup()
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 536, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(22, Short.MAX_VALUE))
+					.addContainerGap(36, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblBajaModificacin)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 264, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+					.addGap(18)
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 297, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancelar)
 						.addComponent(btnAceptar)
@@ -110,26 +81,7 @@ public class JBajaModificacion extends JFrame {
 					.addContainerGap())
 		);
 		
-		TableModel dataModel = new AbstractTableModel() {
-			
-			@Override
-			public Object getValueAt(int rowIndex, int columnIndex) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public int getRowCount() {
-				// TODO Auto-generated method stub
-				return 0;
-			}
-			
-			@Override
-			public int getColumnCount() {
-				// TODO Auto-generated method stub
-				return 0;
-			}
-		};
+		TableModel dataModel = new TableModelElectrodomestico(cbm.getElectrodomesticos());
 		
 		table = new JTable(dataModel);
 				
@@ -151,46 +103,9 @@ public class JBajaModificacion extends JFrame {
 		panel_1.setLayout(gl_panel_1);
 		
 		ButtonGroup bg = new ButtonGroup();
-		
-		rdbtnTelevisor = new JRadioButton("Televisor");
-		rdbtnTelevisor.setSelected(true);
-		rdbtnTelevisor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				//table.set
-			}
-		});
-		
-		
-		rdbtnLavarropas = new JRadioButton("Lavarropas");
-		rdbtnLavarropas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				//table.getModel().getRowCount(cbm.getCantidadElectrodomesticos("l"));
-			}
-		});
-		
-		bg.add(rdbtnLavarropas);
-		bg.add(rdbtnTelevisor);
-		
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(122)
-					.addComponent(rdbtnTelevisor)
-					.addGap(103)
-					.addComponent(rdbtnLavarropas)
-					.addContainerGap(134, Short.MAX_VALUE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(rdbtnLavarropas)
-						.addComponent(rdbtnTelevisor))
-					.addContainerGap(9, Short.MAX_VALUE))
-		);
-		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
-	}
+	}		
+	
+	
 }
+

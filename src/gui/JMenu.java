@@ -21,6 +21,7 @@ public class JMenu extends JFrame {
 
 	private JPanel contentPane;
 	private JAltaElectrodomesticos jae;
+	private JBajaModificacion jbm;
 	
 
 	public JMenu() {
@@ -46,33 +47,39 @@ public class JMenu extends JFrame {
 		
 		JButton btnListadoElectrodomestico = new JButton("Listado Electrodom\u00E9sticos");
 		
-		JButton btnBajaElectrodomestico = new JButton("Baja / Modificacion");
+		JButton btnBajaModificacion = new JButton("Baja / Modificacion");
+		btnBajaModificacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(jbm == null) {
+					jbm= new JBajaModificacion();
+				}
+				jbm.setVisible(true);
+			}
+		});
+		
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(142)
 					.addComponent(lblJuaniElectrodomenticos)
-<<<<<<< HEAD
 					.addContainerGap(148, Short.MAX_VALUE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(168)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnBajaElectrodomestico, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+						.addComponent(btnBajaModificacion, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
 						.addComponent(btnListadoElectrodomestico, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
 						.addComponent(btnAltaElectrodomestico, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
-=======
 					.addContainerGap(171, Short.MAX_VALUE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(168)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnBajaElectrodomestico, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+						.addComponent(btnBajaModificacion, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
 						.addComponent(btnListadoElectrodomestico, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
 						.addComponent(btnAltaElectrodomestico, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-						.addComponent(btnModificarElectrodomestico, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
->>>>>>> 33f1d93c1d552b11d6bf46fd0e1332e0de42079a
 					.addGap(172))
-		);
+		));
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
@@ -83,14 +90,8 @@ public class JMenu extends JFrame {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnListadoElectrodomestico, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnBajaElectrodomestico, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
+					.addComponent(btnBajaModificacion, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(103, Short.MAX_VALUE))
-=======
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnModificarElectrodomestico, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(65, Short.MAX_VALUE))
->>>>>>> 33f1d93c1d552b11d6bf46fd0e1332e0de42079a
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
