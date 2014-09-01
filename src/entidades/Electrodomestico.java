@@ -44,9 +44,7 @@ public abstract class Electrodomestico {
 		}
 		else {
 			this.setColor(Color.DEFAULT);
-		}
-		System.out.println(getColor());
-		
+		}		
 	}
 	
 	private boolean comprobarConsumoEnergetico(String letra) {

@@ -1,6 +1,6 @@
 package gui;
 
-import java.awt.EventQueue;
+import java.awt.Dialog.ModalExclusionType;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -8,11 +8,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.TableModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
 
-import java.awt.Font;
-
-import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -31,17 +27,19 @@ public class JBajaModificacion extends JFrame {
 	private JTable table;
 
 	public JBajaModificacion() {
-		setTitle("Baja / Modificaci�n Electrodom�sticos");
+		setResizable(false);
 		cbm = new ControladorBajaModificacion();
+		
+		setTitle("Baja / Modificación Electrodomésticos");
+		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 687, 443);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JLabel lblBajaModificacin = new JLabel("Baja / Modificaci�n");
-		lblBajaModificacin.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
+		//Boton Cancelar
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -49,6 +47,8 @@ public class JBajaModificacion extends JFrame {
 			}
 		});
 		
+		
+		//Boton Modificar
 		JButton btnAceptar = new JButton("Modificar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -56,6 +56,8 @@ public class JBajaModificacion extends JFrame {
 			}
 		});
 		
+		
+		//Boton Eliminar
 		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -63,16 +65,13 @@ public class JBajaModificacion extends JFrame {
 			}
 		});
 		
+		
 		JScrollPane scrollPane = new JScrollPane();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblBajaModificacin)
-					.addContainerGap(427, Short.MAX_VALUE))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(251, Short.MAX_VALUE)
+					.addContainerGap(22, Short.MAX_VALUE)
 					.addComponent(btnEliminar)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnAceptar)
@@ -85,13 +84,11 @@ public class JBajaModificacion extends JFrame {
 					.addContainerGap(22, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblBajaModificacin)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 309, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+					.addGap(6)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancelar)
 						.addComponent(btnAceptar)
@@ -100,7 +97,7 @@ public class JBajaModificacion extends JFrame {
 		);
 		
 		
-		
+		//Tabla
 		TableModel dataModel = new TableModelElectrodomestico(cbm.getElectrodomesticos());
 		
 		table = new JTable(dataModel);
@@ -108,9 +105,7 @@ public class JBajaModificacion extends JFrame {
 		
 		scrollPane.setViewportView(table);
 		scrollPane.setColumnHeaderView(table.getTableHeader());
-		
-		
-		
+				
 		contentPane.setLayout(gl_contentPane);
 	}		
 	
@@ -133,8 +128,11 @@ public class JBajaModificacion extends JFrame {
 			JOptionPane.showMessageDialog(null, "Seleccione un electrodoméstico", "Error", JOptionPane.ERROR_MESSAGE);	
 		}
 		else {
-			JModificacion jm = new JModificacion(cbm.getElectrodomestico(this.table.getSelectedRow()), this.cbm);
+			int indexTabla = this.table.getSelectedRow();
+			
+			JModificacion jm = new JModificacion(cbm.getElectrodomestico(indexTabla), this.cbm);
 			jm.setVisible(true);
+			
 			((TableModelElectrodomestico) this.table.getModel()).fireTableDataChanged();
 		}
 	}

@@ -7,6 +7,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
@@ -38,23 +39,23 @@ public class JAltaElectrodomesticos extends JFrame {
 	private JRadioButton rdbtnTelevisor;
 	private JRadioButton rdbtnLavarropas;
 	private JPanel pnlDatosEspecificos;
-	private JComboBox cmbColor;
-	private JComboBox cmbConsumo;
+	private JComboBox<String> cmbColor;
+	private JComboBox<String> cmbConsumo;
 	private JCheckBox chkTDT;
 	private JTextPane txtDescripcion;
 	private ControladorAlta ca;
 
 	public JAltaElectrodomesticos() {
+		setResizable(false);
+		ca = new ControladorAlta();
+		
 		setTitle("Alta Electrodom\u00E9stico");
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
-		ca = new ControladorAlta();
-		setBounds(100, 100, 592, 445);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 611, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
-		JLabel lblNewLabel = new JLabel("Alta");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 		JPanel pnlTipoElectrodomestico = new JPanel();
 		
@@ -62,60 +63,62 @@ public class JAltaElectrodomesticos extends JFrame {
 		
 		pnlDatosEspecificos = new JPanel();
 		
+		
+		//Boton Aceptar
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				altaElectrodomestico();
-				defaultearCampos();
-				setVisible(false);
-
+				if(altaElectrodomestico()){
+					dispose();
+				}
 			}
 		});
 		
+		
+		//Boton Cancelar
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				defaultearCampos();
-				setVisible(false);
-				
-				
+				dispose();			
 			}
 		});
+		
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel)
-						.addComponent(pnlTipoElectrodomestico, GroupLayout.PREFERRED_SIZE, 531, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-							.addGroup(gl_contentPane.createSequentialGroup()
-								.addComponent(btnAceptar)
-								.addGap(18)
-								.addComponent(btnCancelar))
-							.addGroup(gl_contentPane.createSequentialGroup()
-								.addComponent(pnlDatosGenerales, GroupLayout.PREFERRED_SIZE, 251, GroupLayout.PREFERRED_SIZE)
-								.addGap(18)
-								.addComponent(pnlDatosEspecificos, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(24, Short.MAX_VALUE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(pnlDatosGenerales, GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+									.addGap(18)
+									.addComponent(pnlDatosEspecificos, GroupLayout.PREFERRED_SIZE, 264, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(btnAceptar)
+									.addGap(18)
+									.addComponent(btnCancelar)
+									.addPreferredGap(ComponentPlacement.RELATED)))
+							.addGap(24))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(pnlTipoElectrodomestico, GroupLayout.PREFERRED_SIZE, 572, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap(17, Short.MAX_VALUE))))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblNewLabel)
-					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(pnlTipoElectrodomestico, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(pnlDatosGenerales, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
-						.addComponent(pnlDatosEspecificos, GroupLayout.PREFERRED_SIZE, 267, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(pnlDatosEspecificos, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+						.addComponent(pnlDatosGenerales, 0, 0, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancelar)
 						.addComponent(btnAceptar))
-					.addContainerGap(13, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		pnlDatosEspecificos.setLayout(new CardLayout(0, 0));
 		
@@ -204,9 +207,9 @@ public class JAltaElectrodomesticos extends JFrame {
 		txtPeso = new JTextField();
 		txtPeso.setColumns(10);
 		
-		cmbColor = new JComboBox(Color.COLORES);
+		cmbColor = new JComboBox<String>(Color.COLORES);
 		
-		cmbConsumo = new JComboBox(ConsumoEnergetico.CONSUMOS);
+		cmbConsumo = new JComboBox<String>(ConsumoEnergetico.CONSUMOS);
 		//Seleccioma por defecto la "F"
 		cmbConsumo.setSelectedIndex(5);
 		
@@ -229,11 +232,11 @@ public class JAltaElectrodomesticos extends JFrame {
 								.addComponent(lblNewLabel_1))
 							.addGap(18)
 							.addGroup(gl_pnlDatosGenerales.createParallelGroup(Alignment.LEADING)
-								.addComponent(cmbColor, 0, 110, Short.MAX_VALUE)
-								.addComponent(txtPeso, GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-								.addComponent(txtPrecioBase)
+								.addComponent(cmbColor, 0, 158, Short.MAX_VALUE)
+								.addComponent(txtPeso, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+								.addComponent(txtPrecioBase, 158, 158, 158)
 								.addComponent(cmbConsumo, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(19, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
 		);
 		gl_pnlDatosGenerales.setVerticalGroup(
 			gl_pnlDatosGenerales.createParallelGroup(Alignment.LEADING)
@@ -256,15 +259,16 @@ public class JAltaElectrodomesticos extends JFrame {
 						.addComponent(lblNewLabel_4))
 					.addGap(27)
 					.addGroup(gl_pnlDatosGenerales.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_pnlDatosGenerales.createSequentialGroup()
-							.addComponent(lblNewLabel_5)
-							.addContainerGap(43, Short.MAX_VALUE))
-						.addComponent(txtDescripcion, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)))
+						.addComponent(lblNewLabel_5)
+						.addComponent(txtDescripcion, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(57, Short.MAX_VALUE))
 		);
 		pnlDatosGenerales.setLayout(gl_pnlDatosGenerales);
 		
 		ButtonGroup bg = new ButtonGroup();
 		
+		
+		//Elegir televisor
 		rdbtnTelevisor = new JRadioButton("Televisor");
 		rdbtnTelevisor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -273,6 +277,8 @@ public class JAltaElectrodomesticos extends JFrame {
 		});
 		rdbtnTelevisor.setSelected(true);
 		
+		
+		//Elegir lavarropas
 		rdbtnLavarropas = new JRadioButton("Lavarropas");
 		rdbtnLavarropas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -285,13 +291,13 @@ public class JAltaElectrodomesticos extends JFrame {
 		
 		GroupLayout gl_pnlTipoElectrodomestico = new GroupLayout(pnlTipoElectrodomestico);
 		gl_pnlTipoElectrodomestico.setHorizontalGroup(
-			gl_pnlTipoElectrodomestico.createParallelGroup(Alignment.TRAILING)
+			gl_pnlTipoElectrodomestico.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlTipoElectrodomestico.createSequentialGroup()
-					.addContainerGap(139, Short.MAX_VALUE)
+					.addGap(94)
 					.addComponent(rdbtnTelevisor)
-					.addGap(109)
+					.addPreferredGap(ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
 					.addComponent(rdbtnLavarropas)
-					.addGap(135))
+					.addGap(116))
 		);
 		gl_pnlTipoElectrodomestico.setVerticalGroup(
 			gl_pnlTipoElectrodomestico.createParallelGroup(Alignment.TRAILING)
@@ -316,7 +322,7 @@ public class JAltaElectrodomesticos extends JFrame {
 		}
 	}
 	
-	private void altaElectrodomestico() {
+	private boolean altaElectrodomestico() {
 		
 		try {
 			double precioBase = Double.valueOf(txtPrecioBase.getText());
@@ -326,37 +332,30 @@ public class JAltaElectrodomesticos extends JFrame {
 			String color = Color.COLORES[cmbColor.getSelectedIndex()];
 			String consumo = ConsumoEnergetico.CONSUMOS[cmbConsumo.getSelectedIndex()];
 			
+			if(descripcion.equals("")) {
+				JOptionPane.showMessageDialog(null, "Descripción vacía", "Error", JOptionPane.ERROR_MESSAGE);
+				return false;
+			}
+			
 			if(rdbtnLavarropas.isSelected()) {
 				double carga = Double.valueOf(txtCarga.getText());
 								
 				ca.altaElectrodomestico(precioBase, peso, descripcion, color, consumo, carga);
+				JOptionPane.showMessageDialog(null, "Se ha cargado el electrodoméstico", "Carga exitosa", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else if(rdbtnTelevisor.isSelected()) {
 				double resolucion = Double.valueOf(txtResolucion.getText());
 				boolean tdt = chkTDT.isSelected();
 				
 				ca.altaElectrodomestico(precioBase, peso, descripcion, color, consumo, resolucion, tdt);
-
+				JOptionPane.showMessageDialog(null, "Se ha cargado el electrodoméstico", "Carga exitosa", JOptionPane.INFORMATION_MESSAGE);
 			}
 		
+			return true;
 		} catch (NumberFormatException e) {
-			System.out.println("error");
-		}
-		
-	}
-	
-	private void defaultearCampos() {
-		this.rdbtnTelevisor.setSelected(true);
-		this.rdbtnLavarropas.setSelected(false);
-		this.mostrarPanel("televisor");
-		this.txtPrecioBase.setText("");
-		this.txtPeso.setText("");
-		this.txtResolucion.setText("");
-		this.txtCarga.setText("");
-		this.cmbColor.setSelectedIndex(0);
-		this.cmbConsumo.setSelectedIndex(5);
-		this.chkTDT.setSelected(false);
-		this.txtDescripcion.setText("");
+			JOptionPane.showMessageDialog(null, "Verificar campos numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}		
 	}
 }
 

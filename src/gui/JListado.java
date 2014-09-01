@@ -1,7 +1,6 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Dialog.ModalExclusionType;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,15 +8,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
-import java.awt.Font;
 
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
 import entidades.ConsumoEnergetico;
 import entidades.Electrodomestico;
@@ -29,31 +25,35 @@ import java.util.ArrayList;
 import javax.swing.JCheckBox;
 
 import logica.ControladorListado;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class JListado extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtImporteMenor;
 	private JTextField txtImporteMayor;
-	private JComboBox cmbConsumo;
+	private JComboBox<String> cmbConsumo;
 	private JCheckBox chkConsumo;
 	private JCheckBox chkImporte;
 	private ControladorListado cl;
 	private ArrayList<Electrodomestico> electrodomesticos;
 
 	public JListado() {
-		setTitle("Buscar");
+		setResizable(false);
 		this.cl = new ControladorListado();
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 605, 255);
+		setTitle("Buscar");
+
+		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 603, 200);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JLabel lblListado = new JLabel("Listado");
-		lblListado.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
+		//Boton Cancelar
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -63,71 +63,82 @@ public class JListado extends JFrame {
 		
 		JPanel panel_2 = new JPanel();
 		
+		
+		//Boton Buscar
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buscar();
 			}
 		});
+		
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(385, Short.MAX_VALUE)
+					.addComponent(btnBuscar)
+					.addGap(18)
+					.addComponent(btnCancelar)
+					.addContainerGap())
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblListado)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-							.addGroup(gl_contentPane.createSequentialGroup()
-								.addComponent(btnBuscar)
-								.addGap(18)
-								.addComponent(btnCancelar))
-							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 563, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(20, Short.MAX_VALUE))
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 563, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(18, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblListado)
-					.addGap(18)
-					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancelar)
 						.addComponent(btnBuscar))
-					.addContainerGap(42, Short.MAX_VALUE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		
 		JPanel panel_1 = new JPanel();
 		
 		JLabel lblConsumo = new JLabel("Consumo");
-		cmbConsumo = new JComboBox(ConsumoEnergetico.CONSUMOS);
+		
+		
+		//Combo Consumo
+		cmbConsumo = new JComboBox<String>(ConsumoEnergetico.CONSUMOS);
+		cmbConsumo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				chkConsumo.setSelected(true);
+			}
+		});
 		
 		chkConsumo = new JCheckBox("");
+		
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
+			gl_panel_1.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblConsumo)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(chkConsumo)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-					.addContainerGap(56, Short.MAX_VALUE)
-					.addComponent(cmbConsumo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(55))
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblConsumo)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(chkConsumo))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGap(49)
+							.addComponent(cmbConsumo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(37, Short.MAX_VALUE))
 		);
 		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblConsumo)
 						.addComponent(chkConsumo))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(cmbConsumo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addContainerGap(25, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
 		
@@ -137,12 +148,26 @@ public class JListado extends JFrame {
 		
 		JLabel lblDesde = new JLabel("Min");
 		
+		
+		// TextField Menor
 		txtImporteMenor = new JTextField();
+		txtImporteMenor.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				chkImporte.setSelected(true);
+			}
+		});
 		txtImporteMenor.setColumns(10);
 		
 		JLabel lblHasta = new JLabel("Max");
 		
+		
+		//TextField Mayor
 		txtImporteMayor = new JTextField();
+		txtImporteMayor.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				chkImporte.setSelected(true);
+			}
+		});
 		txtImporteMayor.setColumns(10);
 		
 		chkImporte = new JCheckBox("");
@@ -157,15 +182,15 @@ public class JListado extends JFrame {
 							.addComponent(lblDesde)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(txtImporteMenor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(60)
-							.addComponent(lblHasta)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(lblHasta)
+							.addGap(18)
 							.addComponent(txtImporteMayor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(lblImporte)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(chkImporte)))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addContainerGap(29, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -174,13 +199,13 @@ public class JListado extends JFrame {
 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblImporte)
 						.addComponent(chkImporte))
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(16)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblDesde)
 						.addComponent(txtImporteMenor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblHasta)
-						.addComponent(txtImporteMayor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(20, Short.MAX_VALUE))
+						.addComponent(txtImporteMayor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblHasta))
+					.addContainerGap(30, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
@@ -190,17 +215,17 @@ public class JListado extends JFrame {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 364, GroupLayout.PREFERRED_SIZE)
-					.addGap(131))
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 386, GroupLayout.PREFERRED_SIZE)
+					.addGap(109))
 		);
 		gl_panel_2.setVerticalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
+				.addGroup(Alignment.TRAILING, gl_panel_2.createSequentialGroup()
 					.addGap(5)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addContainerGap(37, Short.MAX_VALUE))
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+						.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		panel_2.setLayout(gl_panel_2);
 		contentPane.setLayout(gl_contentPane);
@@ -245,14 +270,19 @@ public class JListado extends JFrame {
 			}
 		}
 		
-		if(electrodomesticos.isEmpty()) {
-
-			JOptionPane.showMessageDialog(null, "No se encontraron resultados","Lo sentimos", JOptionPane.INFORMATION_MESSAGE);
+		else if(!this.chkConsumo.isSelected() && !this.chkImporte.isSelected()) {
+			this.electrodomesticos = cl.buscar();
 		}
-		else {
-	
-			JListadoTabla jlt = new JListadoTabla(electrodomesticos);
-			jlt.setVisible(true);
-		}
+		
+		
+		if(electrodomesticos != null) {
+			if(electrodomesticos.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "No se encontraron resultados","Lo sentimos", JOptionPane.INFORMATION_MESSAGE);
+			}
+			else {
+				JListadoTabla jlt = new JListadoTabla(electrodomesticos);
+				jlt.setVisible(true);
+			}
+		}		
 	}
 }

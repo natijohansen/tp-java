@@ -1,7 +1,6 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Dialog.ModalExclusionType;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,6 +19,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -36,8 +36,8 @@ public class JModificacion extends JFrame {
 	private Electrodomestico electrodomestico;
 	private JTextField txtPrecioBase;
 	private JTextField txtPeso;
-	private JComboBox cmbColor;
-	private JComboBox cmbConsumo;
+	private JComboBox<String> cmbColor;
+	private JComboBox<String> cmbConsumo;
 	private JTextPane txtDescripcion;
 	private JCheckBox chkTDT;
 	private JTextField txtResolucion;
@@ -48,12 +48,13 @@ public class JModificacion extends JFrame {
 	private ControladorBajaModificacion cbm;
 	
 	public JModificacion(Electrodomestico e, ControladorBajaModificacion cbm) {
-		setTitle("Modificar Electrodom\u00E9stico");
-		
 		this.electrodomestico = e;
 		this.cbm = cbm;
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Modificar Electrodoméstico");
+		
+		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 481, 385);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -64,6 +65,8 @@ public class JModificacion extends JFrame {
 		
 		JPanel panel = new JPanel();
 		
+		
+		//Boton Cancelar
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -71,12 +74,17 @@ public class JModificacion extends JFrame {
 			}
 		});
 		
+		
+		//Boton Aceptar
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				modificarElectrodomestico();
+				dispose();
 			}
 		});
+		
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -106,15 +114,11 @@ public class JModificacion extends JFrame {
 					.addContainerGap(12, Short.MAX_VALUE))
 		);
 		
-		JLabel lblNewLabel = new JLabel("Precio Base");
-		
-		JLabel lblPeso = new JLabel("Peso");
-		
-		JLabel lblNewLabel_1 = new JLabel("Color");
-		
-		JLabel lblConsumo = new JLabel("Consumo");
-		
-		JLabel lblDescripcin = new JLabel("Descripci\u00F3n");
+		JLabel lblNewLabel = new JLabel("Precio Base");		
+		JLabel lblPeso = new JLabel("Peso");		
+		JLabel lblNewLabel_1 = new JLabel("Color");		
+		JLabel lblConsumo = new JLabel("Consumo");		
+		JLabel lblDescripcin = new JLabel("Descripción");
 		
 		txtPrecioBase = new JTextField();
 		txtPrecioBase.setColumns(10);
@@ -122,9 +126,9 @@ public class JModificacion extends JFrame {
 		txtPeso = new JTextField();
 		txtPeso.setColumns(10);
 		
-		cmbColor = new JComboBox(Color.COLORES);
+		cmbColor = new JComboBox<String>(Color.COLORES);
 		
-		cmbConsumo = new JComboBox(ConsumoEnergetico.CONSUMOS);
+		cmbConsumo = new JComboBox<String>(ConsumoEnergetico.CONSUMOS);
 		
 		txtDescripcion = new JTextPane();
 		
@@ -227,18 +231,15 @@ public class JModificacion extends JFrame {
 		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
 		
-		this.setDefaultValues();
-		
-		
+		this.setDefaultValues();		
 	}
 	
-	private void setDefaultValues() {
-		
+	private void setDefaultValues() {		
 		this.txtPrecioBase.setText(String.valueOf(this.electrodomestico.getPrecioBase()));
 		this.txtPeso.setText(String.valueOf(this.electrodomestico.getPeso()));
 		this.txtDescripcion.setText(this.electrodomestico.getDescripcion());
-		this.cmbColor.setSelectedIndex(electrodomestico.getColor().getIndex());
-		this.cmbConsumo.setSelectedIndex(electrodomestico.getConsumo().getIndex());
+		this.cmbColor.setSelectedIndex(this.electrodomestico.getColor().getIndex());
+		this.cmbConsumo.setSelectedIndex(this.electrodomestico.getConsumo().getIndex());
 		
 		if(this.electrodomestico instanceof Television){	
 			this.lblCarga.setVisible(false);
@@ -280,9 +281,7 @@ public class JModificacion extends JFrame {
 			}
 		
 		} catch (NumberFormatException e) {
-			System.out.println("error");
+			JOptionPane.showMessageDialog(null, "Verificar campos numéricos", "Error", JOptionPane.ERROR_MESSAGE);
 		}
-		
-		this.dispose();
 	}
 }

@@ -3,7 +3,6 @@ import entidades.Television;
 import entidades.Lavarropas;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -24,7 +23,7 @@ public class CatalogoElectrodomesticos {
 	}
 	
 	private CatalogoElectrodomesticos() {
-		for(int i=0; i < 10; i++) {
+		for(int i=0; i < 30; i++) {
 			this.addElectrodomestico(GeneradorElectrodomesticos.generar("lavarropas"));
 			this.addElectrodomestico(GeneradorElectrodomesticos.generar("television"));
 		}
@@ -47,17 +46,16 @@ public class CatalogoElectrodomesticos {
 	}
 	
 	public ArrayList<Electrodomestico> getElectrodomesticos() {
+		this.ordenar(this.electrodomesticos);
 		return this.electrodomesticos;
 	}
 	
 	public ArrayList<Electrodomestico> getElectrodomesticos(double min, double max, String consumo) {
-		ArrayList<Electrodomestico> filtrado = (ArrayList<Electrodomestico>) electrodomesticos.clone();
-		for(Electrodomestico e : filtrado) {
+		ArrayList<Electrodomestico> filtrado = new ArrayList<Electrodomestico>();
+
+		for(Electrodomestico e : this.electrodomesticos) {
 			if(e.getConsumo().getClasificacion().equalsIgnoreCase(consumo) && (e.precioFinal() >= min) && (e.precioFinal() <= max)) {
-				continue;
-			}
-			else {
-				filtrado.remove(e);
+				filtrado.add(e);
 			}
 		}
 
@@ -66,13 +64,11 @@ public class CatalogoElectrodomesticos {
 	}
 	
 	public ArrayList<Electrodomestico> getElectrodomesticos(double min, double max) {
-		ArrayList<Electrodomestico> filtrado = (ArrayList<Electrodomestico>) electrodomesticos.clone();
-		for(Electrodomestico e : filtrado) {
+		ArrayList<Electrodomestico> filtrado = new ArrayList<Electrodomestico>();
+		
+		for(Electrodomestico e : this.electrodomesticos) {
 			if((e.precioFinal() >= min) && (e.precioFinal() <= max)) {
-				continue;
-			}
-			else {
-				filtrado.remove(e);
+				filtrado.add(e);
 			}
 		}
 		
@@ -81,13 +77,11 @@ public class CatalogoElectrodomesticos {
 	}
 	
 	public ArrayList<Electrodomestico> getElectrodomesticos(String consumo) {
-		ArrayList<Electrodomestico> filtrado = (ArrayList<Electrodomestico>) electrodomesticos.clone();
-		for(Electrodomestico e : filtrado) {
-			if(e.getConsumo().getClasificacion().equalsIgnoreCase(consumo)) {
-				continue;
-			}
-			else {
-				filtrado.remove(e);
+		ArrayList<Electrodomestico> filtrado = new ArrayList<Electrodomestico>();
+		
+		for(Electrodomestico e : this.electrodomesticos) {
+			if(e.getConsumo().getClasificacion().equals(consumo)) {
+				filtrado.add(e);
 			}
 		}
 
@@ -108,9 +102,9 @@ public class CatalogoElectrodomesticos {
 	}
 	
 	private void ordenar(ArrayList<Electrodomestico> filtrados) {
-		Collections.sort(filtrados, new Comparator() {
-			public int compare(Object e1, Object e2) {
-				return new Integer(((Electrodomestico) e1).getDescripcion().compareTo(((Electrodomestico) e2).getDescripcion()));
+		Collections.sort(filtrados, new Comparator<Electrodomestico>() {
+			public int compare(Electrodomestico e1, Electrodomestico e2) {
+				return new Integer(e1.toString().compareTo(e2.toString()));
 			}
 		});
 	}

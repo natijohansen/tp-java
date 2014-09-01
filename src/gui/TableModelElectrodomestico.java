@@ -10,7 +10,7 @@ public class TableModelElectrodomestico extends AbstractTableModel {
 	
 	private ArrayList<Electrodomestico> electrodomesticos;
 	
-	private String[] headers = {"Descripción"};
+	private String[] headers = {"DescripciÃ³n"};
 	
 	public TableModelElectrodomestico(ArrayList<Electrodomestico> electrodomesticos) {
 		this.electrodomesticos = electrodomesticos;
@@ -32,6 +32,5 @@ public class TableModelElectrodomestico extends AbstractTableModel {
 	
 	public String getColumnName(int col) {
 		return this.headers[col];
-	}
-	
+	}	
 }
