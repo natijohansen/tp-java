@@ -30,7 +30,7 @@ public class JBajaModificacion extends JFrame {
 		setResizable(false);
 		cbm = new ControladorBajaModificacion();
 		
-		setTitle("Baja / Modificación Electrodomésticos");
+		setTitle("Baja / Modificacion Electrodomesticos");
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 687, 443);
@@ -111,10 +111,10 @@ public class JBajaModificacion extends JFrame {
 	
 	private void eliminarElectrodomestico() {
 		if(this.table.getSelectedRow() ==-1) {
-			JOptionPane.showMessageDialog(null, "Seleccione un electrodoméstico", "Error", JOptionPane.ERROR_MESSAGE);	
+			JOptionPane.showMessageDialog(null, "Seleccione un electrodomestico", "Error", JOptionPane.ERROR_MESSAGE);	
 		}
 		else {
-			int respuesta = JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminarlo?", "Eliminar", JOptionPane.WARNING_MESSAGE);
+			int respuesta = JOptionPane.showConfirmDialog(null, "�Seguro que desea eliminarlo?", "Eliminar", JOptionPane.WARNING_MESSAGE);
 		
 			if(respuesta == 0) {
 				cbm.borrarElectrodomestico(this.table.getSelectedRow());
@@ -125,7 +125,7 @@ public class JBajaModificacion extends JFrame {
 	
 	private void modificarElectrodomestico() {
 		if(this.table.getSelectedRow() ==-1) {
-			JOptionPane.showMessageDialog(null, "Seleccione un electrodoméstico", "Error", JOptionPane.ERROR_MESSAGE);	
+			JOptionPane.showMessageDialog(null, "Seleccione un electrodomestico", "Error", JOptionPane.ERROR_MESSAGE);	
 		}
 		else {
 			int indexTabla = this.table.getSelectedRow();

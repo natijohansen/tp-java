@@ -26,14 +26,14 @@ public class JMenu extends JFrame {
 	private JPanel contentPane;	
 
 	public JMenu() {
-		setTitle("Menú");
+		setTitle("Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 365);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JLabel lblJuaniElectrodomenticos = new JLabel("Juani Electrodomésticos");
+		JLabel lblJuaniElectrodomenticos = new JLabel("Juani Electrodomesticos");
 		lblJuaniElectrodomenticos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblJuaniElectrodomenticos.setFont(new Font("Eras Demi ITC", Font.BOLD, 18));
 		
@@ -81,7 +81,7 @@ public class JMenu extends JFrame {
 		
 		
 		//Boton Listado
-		JButton btnListadoElectrodomestico = new JButton("Listado Electrodomésticos");
+		JButton btnListadoElectrodomestico = new JButton("Listado Electrodomesticos");
 		btnListadoElectrodomestico.setFont(new Font("Dialog", Font.BOLD, 14));
 		GridBagConstraints gbc_btnListadoElectrodomestico = new GridBagConstraints();
 		gbc_btnListadoElectrodomestico.fill = GridBagConstraints.HORIZONTAL;
@@ -98,7 +98,7 @@ public class JMenu extends JFrame {
 		
 		
 		//Boton Baja / Modificacion
-		JButton btnBajaModificacion = new JButton("Baja / Modificación");
+		JButton btnBajaModificacion = new JButton("Baja / Modificacion");
 		btnBajaModificacion.setFont(new Font("Dialog", Font.BOLD, 14));
 		GridBagConstraints gbc_btnBajaModificacion = new GridBagConstraints();
 		gbc_btnBajaModificacion.fill = GridBagConstraints.HORIZONTAL;
@@ -115,7 +115,7 @@ public class JMenu extends JFrame {
 		
 		
 		//Boton Alta
-		JButton btnAltaElectrodomestico = new JButton("Alta Electrodomésticos");
+		JButton btnAltaElectrodomestico = new JButton("Alta Electrodomesticos");
 		btnAltaElectrodomestico.setFont(new Font("Dialog", Font.BOLD, 14));
 		GridBagConstraints gbc_btnAltaElectrodomestico = new GridBagConstraints();
 		gbc_btnAltaElectrodomestico.insets = new Insets(0, 0, 0, 5);

@@ -49,7 +49,7 @@ public class JAltaElectrodomesticos extends JFrame {
 		setResizable(false);
 		ca = new ControladorAlta();
 		
-		setTitle("Alta Electrodom\u00E9stico");
+		setTitle("Alta Electrodomestico");
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 611, 450);
@@ -125,7 +125,7 @@ public class JAltaElectrodomesticos extends JFrame {
 		JPanel pnlTelevisor = new JPanel();
 		pnlDatosEspecificos.add(pnlTelevisor, "pnl_televisor");
 		
-		JLabel lblNewLabel_6 = new JLabel("Resoluci\u00F3n");
+		JLabel lblNewLabel_6 = new JLabel("Resolucion");
 		
 		JLabel lblNewLabel_7 = new JLabel("TDT");
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -199,7 +199,7 @@ public class JAltaElectrodomesticos extends JFrame {
 		
 		JLabel lblNewLabel_4 = new JLabel("Consumo");
 		
-		JLabel lblNewLabel_5 = new JLabel("Descripci\u00F3n");
+		JLabel lblNewLabel_5 = new JLabel("Descripcion");
 		
 		txtPrecioBase = new JTextField();
 		txtPrecioBase.setColumns(10);
@@ -333,7 +333,7 @@ public class JAltaElectrodomesticos extends JFrame {
 			String consumo = ConsumoEnergetico.CONSUMOS[cmbConsumo.getSelectedIndex()];
 			
 			if(descripcion.equals("")) {
-				JOptionPane.showMessageDialog(null, "Descripción vacía", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Descripcion vacia", "Error", JOptionPane.ERROR_MESSAGE);
 				return false;
 			}
 			
@@ -341,19 +341,19 @@ public class JAltaElectrodomesticos extends JFrame {
 				double carga = Double.valueOf(txtCarga.getText());
 								
 				ca.altaElectrodomestico(precioBase, peso, descripcion, color, consumo, carga);
-				JOptionPane.showMessageDialog(null, "Se ha cargado el electrodoméstico", "Carga exitosa", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Se ha cargado el electrodomestico", "Carga exitosa", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else if(rdbtnTelevisor.isSelected()) {
 				double resolucion = Double.valueOf(txtResolucion.getText());
 				boolean tdt = chkTDT.isSelected();
 				
 				ca.altaElectrodomestico(precioBase, peso, descripcion, color, consumo, resolucion, tdt);
-				JOptionPane.showMessageDialog(null, "Se ha cargado el electrodoméstico", "Carga exitosa", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Se ha cargado el electrodomestico", "Carga exitosa", JOptionPane.INFORMATION_MESSAGE);
 			}
 		
 			return true;
 		} catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(null, "Verificar campos numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Verificar campos numericos", "Error", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}		
 	}

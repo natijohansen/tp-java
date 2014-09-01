@@ -51,7 +51,7 @@ public class JModificacion extends JFrame {
 		this.electrodomestico = e;
 		this.cbm = cbm;
 		
-		setTitle("Modificar Electrodoméstico");
+		setTitle("Modificar Electrodomestico");
 		
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -60,7 +60,7 @@ public class JModificacion extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JLabel lblModificacin = new JLabel("Modificaci\u00F3n");
+		JLabel lblModificacin = new JLabel("Modificacion");
 		lblModificacin.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 		JPanel panel = new JPanel();
@@ -118,7 +118,7 @@ public class JModificacion extends JFrame {
 		JLabel lblPeso = new JLabel("Peso");		
 		JLabel lblNewLabel_1 = new JLabel("Color");		
 		JLabel lblConsumo = new JLabel("Consumo");		
-		JLabel lblDescripcin = new JLabel("Descripción");
+		JLabel lblDescripcin = new JLabel("Descripcion");
 		
 		txtPrecioBase = new JTextField();
 		txtPrecioBase.setColumns(10);
@@ -281,7 +281,7 @@ public class JModificacion extends JFrame {
 			}
 		
 		} catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(null, "Verificar campos numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Verificar campos numericos", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

@@ -246,6 +246,7 @@ public class JListado extends JFrame {
 			}
 			catch (NumberFormatException e) {
 				JOptionPane.showMessageDialog(null, "Min y Max deben ser numeros", "Error", JOptionPane.ERROR_MESSAGE);
+				this.electrodomesticos = null;
 			}			
 		}
 		
@@ -267,6 +268,7 @@ public class JListado extends JFrame {
 			}
 			catch (NumberFormatException e) {
 				JOptionPane.showMessageDialog(null, "Min y Max deben ser numeros", "Error", JOptionPane.ERROR_MESSAGE);
+				this.electrodomesticos = null; 
 			}
 		}
 		
