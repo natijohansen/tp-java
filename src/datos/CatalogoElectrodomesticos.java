@@ -12,28 +12,26 @@ public class CatalogoElectrodomesticos {
 
 	private static CatalogoElectrodomesticos ce;
 
-	ArrayList<Electrodomestico> electrodomesticos = new ArrayList<Electrodomestico>();
-	
+	private ArrayList<Electrodomestico> electrodomesticos = new ArrayList<Electrodomestico>();
+	private ElectrodomesticoBD ebd;
 	
 	public static CatalogoElectrodomesticos getCatalogoElectrodomesticos() {
 		if(ce == null) {
-			ce = new CatalogoElectrodomesticos();
+			ce = new CatalogoElectrodomesticos(ElectrodomesticoBD.getElectrodomesticoBD());
 		}
 		return ce;
 	}
 	
-	private CatalogoElectrodomesticos() {
-		for(int i=0; i < 30; i++) {
+	private CatalogoElectrodomesticos(ElectrodomesticoBD ebd) {
+		this.ebd = ebd;
+		//for(int i=0; i < 30; i++) {
 			this.addElectrodomestico(GeneradorElectrodomesticos.generar("lavarropas"));
-			this.addElectrodomestico(GeneradorElectrodomesticos.generar("television"));
-		}
+			//this.addElectrodomestico(GeneradorElectrodomesticos.generar("television"));
+		//}
 	}
 	
 	public Electrodomestico crearElectrodomestico(double precioBase, double peso, String descripcion, String color, String consumo, double resolucion, boolean tdt) {
-
-		return new Television(precioBase, peso, color, consumo, resolucion, tdt, descripcion);
-		
-		
+		return new Television(precioBase, peso, color, consumo, resolucion, tdt, descripcion);	
 	}
 
 	public Electrodomestico crearElectrodomestico(double precioBase, double peso, String color, String consumo, String descripcion, double carga) {
@@ -43,9 +41,11 @@ public class CatalogoElectrodomesticos {
 
 	public void addElectrodomestico(Electrodomestico e) {
 		this.electrodomesticos.add(e);
+		ebd.addElectrodomestico(e);
 	}
 	
 	public ArrayList<Electrodomestico> getElectrodomesticos() {
+		this.electrodomesticos = this.ebd.getElectrodomesticos();
 		this.ordenar(this.electrodomesticos);
 		return this.electrodomesticos;
 	}
