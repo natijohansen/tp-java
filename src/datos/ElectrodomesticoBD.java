@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import entidades.Electrodomestico;
 import entidades.Lavarropas;
 import entidades.Television;
@@ -29,7 +30,7 @@ public class ElectrodomesticoBD {
 	
 	public void addElectrodomestico(Electrodomestico e) {
 		try {
-			//creo consulta (creo)
+			//creo consulta 
 			PreparedStatement stmt = null;
 			
 			String sql = "INSERT INTO electrodomesticos " +
@@ -70,7 +71,7 @@ public class ElectrodomesticoBD {
 		ArrayList<Electrodomestico> electrodomesticos = new ArrayList<Electrodomestico>();
 		
 		try {
-			//creo consulta (creo)
+			//creo consulta 
 			Statement stmt = this.conexion.createStatement();
 			
 			String sql = "SELECT * " +
@@ -84,6 +85,7 @@ public class ElectrodomesticoBD {
 				String color = rs.getString("color");
 				String consumo = rs.getString("consumo");
 				String descripcion = rs.getString("descripcion");
+				int idBD = rs.getInt("id_electrodomestico");
 				
 				Electrodomestico e = null;
 				
@@ -98,6 +100,7 @@ public class ElectrodomesticoBD {
 					e = new Television(precio, peso, color, consumo, resolucion, tdt, descripcion);
 				}
 				
+				e.setIdBD(idBD);
 				electrodomesticos.add(e);
 			}
 			
@@ -109,5 +112,78 @@ public class ElectrodomesticoBD {
 		return electrodomesticos;
 	}
 	
+	public void borrarElectrodomestico(Electrodomestico e) {
+		try {
+		
+			int idBD = e.getIdBD();
+			
+			Statement stmt = null;
+			
+			String sql = "DELETE FROM electrodomesticos WHERE id_electrodomestico = " + idBD;
+			
+			stmt = this.conexion.createStatement();
+			stmt.executeUpdate(sql);
+			
+			stmt.close();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+	}
 	
+public void modificarElectrodomestico(Electrodomestico e, double precioBase, double peso, String descripcion, String color, String consumo, double carga) {
+	try {
+		//creo consulta 
+		PreparedStatement stmt = null;
+		
+		String sql = "UPDATE electrodomesticos " +
+					 "SET precio_base = ?, peso = ?, descripcion = ?, " +
+					 "color = ?, consumo = ?, carga = ? " +
+					 "WHERE id_electrodomestico = ?";
+		
+		stmt = this.conexion.prepareStatement(sql);
+		
+		stmt.setDouble(1, precioBase);
+		stmt.setDouble(2, peso);
+		stmt.setString(3, descripcion);
+		stmt.setString(4, color);
+		stmt.setString(5, consumo);
+		stmt.setDouble(6, carga);
+		stmt.setInt(7, e.getIdBD());
+			
+		stmt.executeUpdate();
+		
+		stmt.close();
+	} catch (SQLException e1) {
+		e1.printStackTrace();
+	}
+}
+	
+	public void modificarElectrodomestico(Electrodomestico e, double precioBase, double peso, String descripcion, String color, String consumo, double resolucion, boolean tdt) {
+		try {
+			//creo consulta
+			PreparedStatement stmt = null;
+			
+			String sql = "UPDATE electrodomesticos " +
+						 "SET precio_base = ?, peso = ?, descripcion = ?, " +
+						 "color = ?, consumo = ?, resolucion = ?, tdt = ? " +
+						 "WHERE id_electrodomestico = ?";
+			
+			stmt = this.conexion.prepareStatement(sql);
+			
+			stmt.setDouble(1, precioBase);
+			stmt.setDouble(2, peso);
+			stmt.setString(3, descripcion);
+			stmt.setString(4, color);
+			stmt.setString(5, consumo);
+			stmt.setDouble(6, resolucion);
+			stmt.setBoolean(7, tdt);
+			stmt.setInt(8, e.getIdBD());
+				
+			stmt.executeUpdate();
+			
+			stmt.close();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+	}
 }

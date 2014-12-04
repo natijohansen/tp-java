@@ -332,20 +332,39 @@ public class JAltaElectrodomesticos extends JFrame {
 			String color = Color.COLORES[cmbColor.getSelectedIndex()];
 			String consumo = ConsumoEnergetico.CONSUMOS[cmbConsumo.getSelectedIndex()];
 			
+			//descripcion vacia
 			if(descripcion.equals("")) {
 				JOptionPane.showMessageDialog(null, "Descripcion vacia", "Error", JOptionPane.ERROR_MESSAGE);
 				return false;
 			}
 			
+			//numeros negativos
+			if(precioBase < 0 || peso < 0) {
+				JOptionPane.showMessageDialog(null, "No ingrese numeros negativos", "Error", JOptionPane.ERROR_MESSAGE);
+				return false;
+			}			
+			
 			if(rdbtnLavarropas.isSelected()) {
 				double carga = Double.valueOf(txtCarga.getText());
-								
+						
+				//numeros negativos
+				if(carga < 0) {
+					JOptionPane.showMessageDialog(null, "No ingrese numeros negativos", "Error", JOptionPane.ERROR_MESSAGE);
+					return false;
+				}
+				
 				ca.altaElectrodomestico(precioBase, peso, descripcion, color, consumo, carga);
 				JOptionPane.showMessageDialog(null, "Se ha cargado el electrodomestico", "Carga exitosa", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else if(rdbtnTelevisor.isSelected()) {
 				double resolucion = Double.valueOf(txtResolucion.getText());
 				boolean tdt = chkTDT.isSelected();
+				
+				//numeros negativos
+				if(resolucion < 0) {
+					JOptionPane.showMessageDialog(null, "No ingrese numeros negativos", "Error", JOptionPane.ERROR_MESSAGE);
+					return false;
+				}
 				
 				ca.altaElectrodomestico(precioBase, peso, descripcion, color, consumo, resolucion, tdt);
 				JOptionPane.showMessageDialog(null, "Se ha cargado el electrodomestico", "Carga exitosa", JOptionPane.INFORMATION_MESSAGE);

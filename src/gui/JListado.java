@@ -259,11 +259,20 @@ public class JListado extends JFrame {
 				double min = Double.valueOf(txtImporteMenor.getText());
 				double max = Double.valueOf(txtImporteMayor.getText());
 				
-				if(min <= max) {
-					this.electrodomesticos = cl.buscar(min, max);
+				//no numeros negativos
+				if(min > 0 && max > 0) {
+					//max mayor a min
+					if(min <= max) {
+						this.electrodomesticos = cl.buscar(min, max);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Min debe ser menor a Max", "Error", JOptionPane.ERROR_MESSAGE);
+						this.electrodomesticos = null; 
+					}
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Min debe ser menor a Max", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "No ingrese numeros negativos", "Error", JOptionPane.ERROR_MESSAGE);
+					this.electrodomesticos = null; 
 				}
 			}
 			catch (NumberFormatException e) {

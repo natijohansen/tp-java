@@ -1,7 +1,6 @@
 package datos;
 import entidades.Television;
 import entidades.Lavarropas;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -24,10 +23,10 @@ public class CatalogoElectrodomesticos {
 	
 	private CatalogoElectrodomesticos(ElectrodomesticoBD ebd) {
 		this.ebd = ebd;
-		//for(int i=0; i < 30; i++) {
-			this.addElectrodomestico(GeneradorElectrodomesticos.generar("lavarropas"));
-			//this.addElectrodomestico(GeneradorElectrodomesticos.generar("television"));
-		//}
+//		for(int i=0; i < 15; i++) {
+//			this.addElectrodomestico(GeneradorElectrodomesticos.generar("lavarropas"));
+//			this.addElectrodomestico(GeneradorElectrodomesticos.generar("television"));
+//		}
 	}
 	
 	public Electrodomestico crearElectrodomestico(double precioBase, double peso, String descripcion, String color, String consumo, double resolucion, boolean tdt) {
@@ -90,11 +89,44 @@ public class CatalogoElectrodomesticos {
 	}
 	
 	public void borrarElectrodomestico(int index) {
+		Electrodomestico e = electrodomesticos.get(index);
+		ebd.borrarElectrodomestico(e);
 		this.electrodomesticos.remove(index);
 	}
 	
 	public void borrarElectrodomestico(Electrodomestico e) {
 		this.electrodomesticos.remove(e);
+	}
+	
+	public void modificarElectrodomestico(Electrodomestico e, double precioBase, double peso, String descripcion, String color, String consumo, double carga) {
+		this.electrodomesticos.remove(e);
+		
+		ebd.modificarElectrodomestico(e, precioBase, peso, descripcion, color, consumo, carga);
+		
+		e.setPrecioBase(precioBase);
+		e.setPeso(peso);
+		e.setDescripcion(descripcion);
+		e.setColor(color);
+		e.setConsumo(consumo);
+		((Lavarropas) e).setCarga(carga);
+		
+		this.electrodomesticos.add(e);
+	}
+
+	public void modificarElectrodomestico(Electrodomestico e, double precioBase, double peso, String descripcion, String color, String consumo, double resolucion, boolean tdt) {
+		this.electrodomesticos.remove(e);
+		
+		ebd.modificarElectrodomestico(e, precioBase, peso, descripcion, color, consumo, resolucion, tdt);
+		
+		e.setPrecioBase(precioBase);
+		e.setPeso(peso);
+		e.setDescripcion(descripcion);
+		e.setColor(color);
+		e.setConsumo(consumo);
+		((Television) e).setResolucion(resolucion);
+		((Television) e).setTdt(tdt);
+		
+		this.electrodomesticos.add(e);
 	}
 	
 	public Electrodomestico getElectrodomestico(int index) {

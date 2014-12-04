@@ -12,6 +12,7 @@ public abstract class Electrodomestico {
 	private Color color;
 	private ConsumoEnergetico consumo;
 	private String descripcion;
+	private int idBD; // id en la base de datos
 	
 	
 	Electrodomestico() {
@@ -114,6 +115,15 @@ public abstract class Electrodomestico {
 		this.color = color;
 	}
 	
+	public void setColor(String color) {
+		if(comprobarColor(color)) {
+			this.color = new Color(color);
+		}
+		else {
+			this.color = Color.DEFAULT;
+		}
+	}
+	
 	public ConsumoEnergetico getConsumo() {
 		return consumo;
 	}
@@ -122,12 +132,29 @@ public abstract class Electrodomestico {
 		this.consumo = consumo;
 	}
 	
+	public void setConsumo(String consumo) {
+		if(comprobarConsumoEnergetico(consumo)) {
+			this.consumo = new ConsumoEnergetico(consumo);
+		}
+		else {
+			this.consumo = ConsumoEnergetico.DEFAULT;
+		}
+	}
+	
 	public String getDescripcion() {
 		return descripcion;
 	}
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	
+	public void setIdBD(int idBD) {
+		this.idBD = idBD;
+	}
+	
+	public int getIdBD() {
+		return this.idBD;
 	}
 	
 	public abstract String toString(); 

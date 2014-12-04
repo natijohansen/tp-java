@@ -27,14 +27,10 @@ public class ControladorBajaModificacion {
 	}
 	
 	public void modificarElectrodomestico(Electrodomestico e, double precioBase, double peso, String descripcion, String color, String consumo, double carga) {
-		ce.borrarElectrodomestico(e);
-		Electrodomestico elec = ce.crearElectrodomestico(precioBase, peso, color, consumo, descripcion, carga);
-		ce.addElectrodomestico(elec);
+		ce.modificarElectrodomestico(e, precioBase, peso, descripcion, color, consumo, carga);
 	}
 	
 	public void modificarElectrodomestico(Electrodomestico e, double precioBase, double peso, String descripcion, String color, String consumo, double resolucion, boolean tdt) {
-		ce.borrarElectrodomestico(e);
-		Electrodomestico elec = ce.crearElectrodomestico(precioBase, peso, descripcion, color, consumo, resolucion, tdt);
-		ce.addElectrodomestico(elec);
+		ce.modificarElectrodomestico(e, precioBase, peso, descripcion, color, consumo, resolucion, tdt);
 	}
 }
