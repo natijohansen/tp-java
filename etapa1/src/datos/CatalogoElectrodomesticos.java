@@ -50,6 +50,7 @@ public class CatalogoElectrodomesticos {
 	}
 	
 	public ArrayList<Electrodomestico> getElectrodomesticos(double min, double max, String consumo) {
+		this.electrodomesticos = this.ebd.getElectrodomesticos();
 		ArrayList<Electrodomestico> filtrado = new ArrayList<Electrodomestico>();
 
 		for(Electrodomestico e : this.electrodomesticos) {
@@ -63,6 +64,7 @@ public class CatalogoElectrodomesticos {
 	}
 	
 	public ArrayList<Electrodomestico> getElectrodomesticos(double min, double max) {
+		this.electrodomesticos = this.ebd.getElectrodomesticos();
 		ArrayList<Electrodomestico> filtrado = new ArrayList<Electrodomestico>();
 		
 		for(Electrodomestico e : this.electrodomesticos) {
@@ -76,6 +78,7 @@ public class CatalogoElectrodomesticos {
 	}
 	
 	public ArrayList<Electrodomestico> getElectrodomesticos(String consumo) {
+		this.electrodomesticos = this.ebd.getElectrodomesticos();
 		ArrayList<Electrodomestico> filtrado = new ArrayList<Electrodomestico>();
 		
 		for(Electrodomestico e : this.electrodomesticos) {
