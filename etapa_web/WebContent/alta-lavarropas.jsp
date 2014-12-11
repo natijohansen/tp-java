@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form method="post" action="alta">
+<form method="post" action="alta-lavarropas">
 <fieldset>
 <legend>Alta Lavarropas</legend>
   <label>Precio Base: <input type="text" name="precioBase"/></label>

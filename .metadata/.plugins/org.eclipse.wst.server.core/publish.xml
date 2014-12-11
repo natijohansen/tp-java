@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <publish-info>
-  <server id="Tomcat v7.0 Server at localhost" path="publish1.dat"/>
+  <server id="JBoss AS 7.11418337949817" path="publish2.dat"/>
 </publish-info>
