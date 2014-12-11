@@ -7,10 +7,10 @@
   </style>
 </head>
 <body>
-<a href="alta.html">Volver</a>
-<form method="post" action="alta-televisor">
+
+<form method="post" action="alta-lavarropas">
 <fieldset>
-<legend>Alta Televisor</legend>
+<legend>Alta Lavarropas</legend>
   <label>Precio Base: <input type="text" name="precioBase"/></label>
   <label>Peso: <input type="text" name="peso"/></label>
   <label>Color: 
@@ -33,9 +33,8 @@
     </select>
   </label>
   <label>Descripcion: <textarea name="descripcion"></textarea></label>
-  <label>Resolucion: <input type="text" name="resolucion"/></label>
-  <label>TDT: <input type="checkbox" name="tdt"/></label>
-
+  <label>Carga: <input type="text" name="carga"/></label>
+<br />
   <input type="submit" value="Guardar">
   <input type="reset" value="Limpiar">
 </fieldset>

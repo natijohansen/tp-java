@@ -7,6 +7,7 @@
   </style>
 </head>
 <body>
+<a href="alta.html">Volver</a>
 
 <form method="post" action="alta-lavarropas">
 <fieldset>

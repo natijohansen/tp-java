@@ -32,7 +32,7 @@ public class ServletListado extends HttpServlet {
     			+ "<head>"
     			+ "</head>"
     			+ "<body>"
-    			+ "<a href='index.html'>Volver</a>"
+    			+ "<a href="index.html">Volver</a>"
     			+ "<ol>";
     	
     	for(Electrodomestico e : electrodomesticos) {
