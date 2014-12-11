@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<ul> 
+<li><a href="/listado">Listado</a></li>
+<li><a href="/alta">Alta</a></li>
+<li><a href="/buscar">Buscar</a></li>
+</ul>
+</body>
+</html>

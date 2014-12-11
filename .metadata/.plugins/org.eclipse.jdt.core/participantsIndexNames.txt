@@ -1,0 +1,7 @@
+INDEX VERSION 1.127
+/media/multimedia/Desarrollo/git/tp-java/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/275888585.index
+/etapa_web/src
+/media/multimedia/Desarrollo/git/tp-java/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1919725655.index
+/etapa_web/src
+/media/multimedia/Desarrollo/git/tp-java/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/2770602303.index
+/etapa_web/src

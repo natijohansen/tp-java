@@ -2,7 +2,6 @@ package logica;
 
 import datos.CatalogoElectrodomesticos;
 import entidades.Electrodomestico;
-import gui.JAltaElectrodomesticos;
 
 public class ControladorAlta {
 	
