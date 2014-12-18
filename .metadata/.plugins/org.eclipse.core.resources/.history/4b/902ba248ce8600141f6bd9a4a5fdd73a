@@ -1,0 +1,24 @@
+document.getElementById('chkEliminar').checked = false;
+
+function eliminar() {
+	document.getElementById('chkEliminar').checked = true;
+	document.getElementById('form').submit();
+}
+
+function comprobar() {
+	if(document.getElementById('chkEliminar').checked) {
+		if(window.confirm('Seguro que desea eliminar?')) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		return true;
+	}
+}
+
+function modificar() {
+	document.getElementById('form').submit();
+}

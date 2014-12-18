@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Electrodomesticos Juani</title>
+</head>
+<body>
+<ul> 
+<li><a href="listado">Listado</a></li>
+<li><a href="alta.html">Alta</a></li>
+<li><a href="#">Buscar</a></li>
+</ul>
+</body>
+</html>

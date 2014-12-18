@@ -13,9 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import datos.CatalogoElectrodomesticos;
 import entidades.Electrodomestico;
 
-/**
- * Servlet implementation class ServletListado
- */
 @WebServlet(urlPatterns="/listado", name="ServletListado")
 public class ServletListado extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -51,6 +48,5 @@ public class ServletListado extends HttpServlet {
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
     }
 }

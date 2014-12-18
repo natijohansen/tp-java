@@ -1,0 +1,63 @@
+package servlets;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/busqueda")
+public class ServletBusqueda extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+   
+    public ServletBusqueda() {
+        super();
+
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		request.getRequestDispatcher("/busqueda.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		boolean chkConsumo;
+		boolean chkImporte;
+		String consumo;
+		double importeMinimo;
+		double importeMaximo;
+				
+		if(request.getParameter("chkConsumo") == null) {
+			chkConsumo = false;
+		}
+		else {
+			chkConsumo = true;
+		}
+		
+		if(request.getParameter("chkImporte") == null) {
+			chkImporte = false;
+		}
+		else {
+			chkImporte = true;
+		}
+		
+		if(!chkImporte && !chkConsumo) {
+			response.sendRedirect("listado.jsp");
+		}
+		
+		if(chkConsumo && chkImporte) {
+			consumo = request.getParameter("consumo");
+
+			try {
+				importeMinimo = Double.parseDouble(request.getParameter("importeMinimo"));
+				importeMaximo = Double.parseDouble(request.getParameter("importeMaximo"));
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+}

@@ -1,0 +1,53 @@
+package servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import datos.CatalogoElectrodomesticos;
+import entidades.Electrodomestico;
+
+@WebServlet(urlPatterns="/listado", name="ServletListado")
+public class ServletListado extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	private CatalogoElectrodomesticos ce = CatalogoElectrodomesticos.getCatalogoElectrodomesticos();
+	private ArrayList<Electrodomestico> electrodomesticos = ce.getElectrodomesticos();
+    
+    public ServletListado() {
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+    	String html = "<html>"
+    			+ "<head>"
+    			+ "</head>"
+    			+ "<body>"
+    			+ "<a href='index.html'>Volver</a>"
+    			+ "<ol>";
+    	
+    	for(Electrodomestico e : electrodomesticos) {
+    		html += "<li>";
+    		html += e.idBD();
+    		html += "</li>";
+    	}
+    	
+    	html += "</body>"
+    			+ "</html>";
+    	
+    	PrintWriter out = response.getWriter();
+    	out.print(html);
+    	
+    	request.getRequestDispatcher("/listado.jsp").include(request, response);
+    }
+    
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+    }
+}

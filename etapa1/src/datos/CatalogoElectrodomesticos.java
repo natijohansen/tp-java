@@ -98,6 +98,7 @@ public class CatalogoElectrodomesticos {
 	}
 	
 	public void borrarElectrodomestico(Electrodomestico e) {
+		ebd.borrarElectrodomestico(e);
 		this.electrodomesticos.remove(e);
 	}
 	
@@ -134,6 +135,16 @@ public class CatalogoElectrodomesticos {
 	
 	public Electrodomestico getElectrodomestico(int index) {
 		return this.electrodomesticos.get(index);
+	}
+	
+	public Electrodomestico getElectrodomesticoPorIdBD(int idBD) {
+		this.electrodomesticos = this.ebd.getElectrodomesticos();
+		for(Electrodomestico e : electrodomesticos) {
+			if(e.getIdBD() == idBD) {
+				return e;
+			}
+		}
+		return null;
 	}
 	
 	private void ordenar(ArrayList<Electrodomestico> filtrados) {

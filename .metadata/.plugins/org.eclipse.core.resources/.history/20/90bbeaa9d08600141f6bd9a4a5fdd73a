@@ -1,0 +1,26 @@
+document.getElementById('chkEliminar').checked = false;
+
+function eliminar() {
+	if(comprobar()) {
+		alert('No ha seleccionado ningun electrodomestico');
+	}
+	else {
+		document.getElementById('chkEliminar').checked = true;
+		if(window.confirm('Seguro que desea eliminar?')) {
+			document.getElementById('form').submit();
+		}
+	}
+}
+
+function modificar() {
+	document.getElementById('form').submit();
+}
+
+function comprobar() {
+	if(document.getElementById('rdbElectrodomestico').value != null) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}

@@ -1,0 +1,5 @@
+document.getElementByID('chkEliminar').checked = false;
+
+function eliminar() {
+	document.getElementByID('chkEliminar').checked = true;
+}

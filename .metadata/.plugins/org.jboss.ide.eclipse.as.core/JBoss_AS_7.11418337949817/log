@@ -29,3 +29,96 @@
 
 !ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2014-12-11 20:17:12.775
 !MESSAGE Server Startup Succeeded
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2014-12-18 10:14:45.971
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2014-12-18 10:15:00.112
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 0 2014-12-18 10:15:07.246
+!MESSAGE Module etapa_web on JBoss AS 7.1 not yet fully deployed. Waiting...
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2014-12-18 10:41:54.520
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842785 2014-12-18 10:41:54.631
+!MESSAGE Server Shutdown Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2014-12-18 10:41:54.717
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2014-12-18 10:42:00.644
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 4 1644298244 2014-12-18 13:03:41.995
+!MESSAGE Publish Failed for module etapa_web
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 0 2014-12-18 13:03:41.995
+!MESSAGE Copy of /media/multimedia/Desarrollo/git/tp-java/etapa1/bin/datos/CatalogoElectrodomesticos$1.class to /media/multimedia/Desarrollo/git/tp-java/.metadata/.plugins/org.jboss.ide.eclipse.as.core/JBoss_AS_7.11418337949817/tempRemoteDeploy/etapa1.jar/datos/CatalogoElectrodomesticos$1.class has failed
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 0 2014-12-18 13:03:41.995
+!MESSAGE Copy of /media/multimedia/Desarrollo/git/tp-java/etapa1/bin/datos/CatalogoElectrodomesticos.class to /media/multimedia/Desarrollo/git/tp-java/.metadata/.plugins/org.jboss.ide.eclipse.as.core/JBoss_AS_7.11418337949817/tempRemoteDeploy/etapa1.jar/datos/CatalogoElectrodomesticos.class has failed
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 0 2014-12-18 13:03:41.995
+!MESSAGE Copy of /media/multimedia/Desarrollo/git/tp-java/etapa1/bin/.gitignore to /media/multimedia/Desarrollo/git/tp-java/.metadata/.plugins/org.jboss.ide.eclipse.as.core/JBoss_AS_7.11418337949817/tempRemoteDeploy/etapa1.jar/.gitignore has failed
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 4 1644298244 2014-12-18 13:04:03.779
+!MESSAGE Publish Failed for module etapa_web
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 0 2014-12-18 13:04:03.779
+!MESSAGE Copy of /media/multimedia/Desarrollo/git/tp-java/etapa1/bin/datos/CatalogoElectrodomesticos$1.class to /media/multimedia/Desarrollo/git/tp-java/.metadata/.plugins/org.jboss.ide.eclipse.as.core/JBoss_AS_7.11418337949817/tempRemoteDeploy/etapa1.jar/datos/CatalogoElectrodomesticos$1.class has failed
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 0 2014-12-18 13:04:03.779
+!MESSAGE Copy of /media/multimedia/Desarrollo/git/tp-java/etapa1/bin/datos/CatalogoElectrodomesticos.class to /media/multimedia/Desarrollo/git/tp-java/.metadata/.plugins/org.jboss.ide.eclipse.as.core/JBoss_AS_7.11418337949817/tempRemoteDeploy/etapa1.jar/datos/CatalogoElectrodomesticos.class has failed
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 0 2014-12-18 13:04:03.779
+!MESSAGE Copy of /media/multimedia/Desarrollo/git/tp-java/etapa1/bin/.gitignore to /media/multimedia/Desarrollo/git/tp-java/.metadata/.plugins/org.jboss.ide.eclipse.as.core/JBoss_AS_7.11418337949817/tempRemoteDeploy/etapa1.jar/.gitignore has failed
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 4 1644298244 2014-12-18 13:04:55.727
+!MESSAGE Publish Failed for module etapa_web
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 0 2014-12-18 13:04:55.727
+!MESSAGE Copy of /media/multimedia/Desarrollo/git/tp-java/etapa1/bin/datos/CatalogoElectrodomesticos$1.class to /media/multimedia/Desarrollo/git/tp-java/.metadata/.plugins/org.jboss.ide.eclipse.as.core/JBoss_AS_7.11418337949817/tempRemoteDeploy/etapa1.jar/datos/CatalogoElectrodomesticos$1.class has failed
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 0 2014-12-18 13:04:55.728
+!MESSAGE Copy of /media/multimedia/Desarrollo/git/tp-java/etapa1/bin/datos/CatalogoElectrodomesticos.class to /media/multimedia/Desarrollo/git/tp-java/.metadata/.plugins/org.jboss.ide.eclipse.as.core/JBoss_AS_7.11418337949817/tempRemoteDeploy/etapa1.jar/datos/CatalogoElectrodomesticos.class has failed
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 0 2014-12-18 13:04:55.728
+!MESSAGE Copy of /media/multimedia/Desarrollo/git/tp-java/etapa1/bin/.gitignore to /media/multimedia/Desarrollo/git/tp-java/.metadata/.plugins/org.jboss.ide.eclipse.as.core/JBoss_AS_7.11418337949817/tempRemoteDeploy/etapa1.jar/.gitignore has failed
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 4 1644298244 2014-12-18 13:51:32.808
+!MESSAGE Publish Failed for module etapa_web
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 0 2014-12-18 13:51:32.808
+!MESSAGE Copy of /media/multimedia/Desarrollo/git/tp-java/etapa1/bin/datos/CatalogoElectrodomesticos$1.class to /media/multimedia/Desarrollo/git/tp-java/.metadata/.plugins/org.jboss.ide.eclipse.as.core/JBoss_AS_7.11418337949817/tempRemoteDeploy/etapa1.jar/datos/CatalogoElectrodomesticos$1.class has failed
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 0 2014-12-18 13:51:32.808
+!MESSAGE Copy of /media/multimedia/Desarrollo/git/tp-java/etapa1/bin/datos/CatalogoElectrodomesticos.class to /media/multimedia/Desarrollo/git/tp-java/.metadata/.plugins/org.jboss.ide.eclipse.as.core/JBoss_AS_7.11418337949817/tempRemoteDeploy/etapa1.jar/datos/CatalogoElectrodomesticos.class has failed
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 4 1644298244 2014-12-18 13:51:39.972
+!MESSAGE Publish Failed for module etapa_web
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 0 2014-12-18 13:51:39.972
+!MESSAGE Copy of /media/multimedia/Desarrollo/git/tp-java/etapa1/bin/datos/CatalogoElectrodomesticos$1.class to /media/multimedia/Desarrollo/git/tp-java/.metadata/.plugins/org.jboss.ide.eclipse.as.core/JBoss_AS_7.11418337949817/tempRemoteDeploy/etapa1.jar/datos/CatalogoElectrodomesticos$1.class has failed
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 0 2014-12-18 13:51:39.972
+!MESSAGE Copy of /media/multimedia/Desarrollo/git/tp-java/etapa1/bin/datos/CatalogoElectrodomesticos.class to /media/multimedia/Desarrollo/git/tp-java/.metadata/.plugins/org.jboss.ide.eclipse.as.core/JBoss_AS_7.11418337949817/tempRemoteDeploy/etapa1.jar/datos/CatalogoElectrodomesticos.class has failed
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2014-12-18 13:53:41.698
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842785 2014-12-18 13:53:42.008
+!MESSAGE Server Shutdown Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2014-12-18 13:53:43.873
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2014-12-18 13:54:00.315
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 0 2014-12-18 13:54:05.398
+!MESSAGE Module etapa_web on JBoss AS 7.1 not yet fully deployed. Waiting...
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2014-12-18 13:54:57.577
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842785 2014-12-18 13:54:58.710
+!MESSAGE Server Shutdown Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2014-12-18 13:54:58.795
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2014-12-18 13:55:03.034
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 0 2014-12-18 13:55:08.121
+!MESSAGE Module etapa_web on JBoss AS 7.1 not yet fully deployed. Waiting...

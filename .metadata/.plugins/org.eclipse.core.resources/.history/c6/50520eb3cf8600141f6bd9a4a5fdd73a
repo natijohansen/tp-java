@@ -1,0 +1,83 @@
+package servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import datos.CatalogoElectrodomesticos;
+import entidades.Electrodomestico;
+
+@WebServlet("/baja-modificacion")
+public class ServletBajaModificacion extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	private CatalogoElectrodomesticos ce = CatalogoElectrodomesticos.getCatalogoElectrodomesticos();
+	private ArrayList<Electrodomestico> electrodomesticos = ce.getElectrodomesticos();
+    
+    public ServletBajaModificacion() {
+        super();
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String html = "<html>"
+    			+ "<head>"
+    			+ "<style>"
+    			+ "label { display: block}"
+    			+ "#chkEliminar {display: none}"
+    			+ "</style>"
+    			+ "</head>"
+    			+ "<body>"
+    			+ "<a href='index.html'>Volver</a>"
+    			+ "<form action='baja-modificacion' method='post' onsubmit='return comprobar()' id='form'>";
+    	
+    	for(Electrodomestico e : electrodomesticos) {
+    		html += "<label><input type='radio' name='rdbElectrodomestico' value='";
+    		html += e.getIdBD();
+    		html += "' />";
+    		html += e.toString();
+    		html += "</label>";
+    	}
+    	
+    	html += "<div>"
+    			+ "<input type='checkbox' name='chkEliminar' id='chkEliminar' />"
+    			+ "<input type='button' value='Eliminar' onclick='eliminar()' />"
+    			+ "<input type='button' value='Modificar' onclick='modificar()' />"
+    			+ "</div>";
+    	
+    	html += "</form>"
+    			+ "<script type='text/javascript' src='baja-modificacion.js'></script>"
+    			+ "</body>"
+    			+ "</html>";
+    	
+    	PrintWriter out = response.getWriter();
+    	out.print(html);
+    	
+    	request.getRequestDispatcher("/baja-modificacion.jsp").include(request, response);
+	
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	boolean eliminar;
+	CatalogoElectrodomesticos ce = CatalogoElectrodomesticos.getCatalogoElectrodomesticos();
+	
+	
+	if(request.getParameter("chkEliminar") == null) {
+		eliminar = false;
+	}
+	else {
+		eliminar = true;
+	}
+	
+	if(eliminar) {
+		ce.borrarElectrodomestico(ce.getElectrodomesticoPorIdBD(idBD)));
+	}
+	
+	
+	}
+
+}
